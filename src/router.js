@@ -1,6 +1,6 @@
 import Manager from "./components/Manager.vue";
 import Inventory from "./components/ManageInventory.vue";
-import Customer from "./components/Customer.vue";
+import Customer from "./components/Customer/Customer.vue";
 import Server from "./components/Server.vue";
 
 import { createRouter, createWebHistory } from "vue-router";

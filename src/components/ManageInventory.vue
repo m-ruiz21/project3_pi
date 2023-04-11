@@ -1,4 +1,4 @@
-r<template>
+<template>
   <nav
     class="navbar py-3 navbar-dark navbar-expand-lg"
     style="background-color: rgb(46, 56, 116)"

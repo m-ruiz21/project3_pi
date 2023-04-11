@@ -1,0 +1,39 @@
+.menu-item {
+    border: 5px solid #242B64;
+    padding: 10px;
+    border-radius: 20px;
+    margin: 2%;
+}
+
+.menu-item-img {
+    width: 300px;
+    height: 100%;
+}
+
+.navbar-brand {
+    width: 200px;
+    height: 100%;
+}
+
+/* curved button with navy background and white text */
+.btn-primary {
+    width: 40%;
+    background-color: #242B64;
+    color: white;
+    border-radius: 20px;
+    border: 2px solid #242B64;
+    padding: 12px 24px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.btn-secondary {
+    width: 40%;
+    background-color: white;
+    color: #242B64;
+    border-radius: 20px;
+    border: 2px solid #242B64;
+    padding: 12px 24px;
+    font-size: 20px;
+    font-weight: bold;
+}
