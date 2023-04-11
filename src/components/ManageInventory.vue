@@ -1,4 +1,4 @@
-<template>
+r<template>
   <nav
     class="navbar py-3 navbar-dark navbar-expand-lg"
     style="background-color: rgb(46, 56, 116)"
@@ -24,30 +24,28 @@
       >
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" href="/manager">Dashboard</a>
+            <router-link class="nav-link" to="/manager">Dashboard</router-link>
           </li>
           <li class="nav-item">
-            <a
+            <router-link
               class="nav-link active"
               aria-current="page"
-              href="/manager/inventory"
-              >Manage Inventory</a
-            >
+              to="/manager/inventory">Manage Inventory</router-link>
           </li>
           <li class="nav-item dropdown">
-            <a
+            <router-link
               class="nav-link dropdown-toggle"
-              href="#"
+              to="#"
               role="button"
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
               Reports
-            </a>
+            </router-link>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Sales Report</a></li>
-              <li><a class="dropdown-item" href="#">Excess Report</a></li>
-              <li><a class="dropdown-item" href="#">X and Z Report</a></li>
+              <li><router-link class="dropdown-item" to="#">Sales Report</router-link></li>
+              <li><router-link class="dropdown-item" to="#">Excess Report</router-link></li>
+              <li><router-link class="dropdown-item" to="#">X and Z Report</router-link></li>
             </ul>
           </li>
         </ul>

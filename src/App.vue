@@ -1,5 +1,4 @@
 <script setup>
-// import HelloWorld from './components/HelloWorld.vue'
 import Manager from "./components/Manager.vue";
 import Inventory from "./components/ManageInventory.vue";
 </script>
