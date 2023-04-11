@@ -1,12 +1,11 @@
 .menu-item {
-    border: 5px solid #242B64;
     padding: 10px;
     border-radius: 20px;
     margin: 2%;
 }
 
 .menu-item-img {
-    width: 300px;
+    width: 250px;
     height: 100%;
 }
 
