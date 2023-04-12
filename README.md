@@ -1,6 +1,6 @@
 # project3_pi
 
-This is the Vui.js Project for Project 3
+This is the Vue.js Project for Project 3
 
 To run the project:
 ```
