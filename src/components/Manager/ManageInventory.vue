@@ -74,75 +74,19 @@
         <div class="col">
           <h1 class="mb-3">Current Inventory</h1>
           <div class="table-wrapper-scroll-y my-custom-scrollbar">
-            <table class="table">
+            <table v-if="Inventory && Inventory.length" class="table">
               <thead>
                 <tr>
-                  <th scope="col">ID</th>
                   <th scope="col">Name</th>
-                  <th scope="col">Quantity</th>
                   <th scope="col">Category</th>
+                  <th scope="col">Quantity</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td scope="row">7278bd76-b7a8-11ed-b486-00155d0752bf</td>
-                  <td>brown rice</td>
-                  <td>2000</td>
-                  <td>base</td>
-                </tr>
-                <tr>
-                  <td scope="row">7278c294-b7a8-11ed-b486-00155d0752bf</td>
-                  <td>rice pilaf</td>
-                  <td>2000</td>
-                  <td>base</td>
-                </tr>
-                <tr>
-                  <td scope="row">7278c370-b7a8-11ed-b486-00155d0752bf</td>
-                  <td>pita</td>
-                  <td>2000</td>
-                  <td>base</td>
-                </tr>
-                <tr>
-                  <td scope="row">7278c370-b7a8-11ed-b486-00155d0752bf</td>
-                  <td>pita</td>
-                  <td>2000</td>
-                  <td>base</td>
-                </tr>
-                <tr>
-                  <td scope="row">7278c370-b7a8-11ed-b486-00155d0752bf</td>
-                  <td>pita</td>
-                  <td>2000</td>
-                  <td>base</td>
-                </tr>
-                <tr>
-                  <td scope="row">7278c370-b7a8-11ed-b486-00155d0752bf</td>
-                  <td>pita</td>
-                  <td>2000</td>
-                  <td>base</td>
-                </tr>
-                <tr>
-                  <td scope="row">7278c370-b7a8-11ed-b486-00155d0752bf</td>
-                  <td>pita</td>
-                  <td>2000</td>
-                  <td>base</td>
-                </tr>
-                <tr>
-                  <td scope="row">7278c370-b7a8-11ed-b486-00155d0752bf</td>
-                  <td>pita</td>
-                  <td>2000</td>
-                  <td>base</td>
-                </tr>
-                <tr>
-                  <td scope="row">7278c370-b7a8-11ed-b486-00155d0752bf</td>
-                  <td>pita</td>
-                  <td>2000</td>
-                  <td>base</td>
-                </tr>
-                <tr>
-                  <td scope="row">7278c370-b7a8-11ed-b486-00155d0752bf</td>
-                  <td>pita</td>
-                  <td>2000</td>
-                  <td>base</td>
+                <tr v-for="item in Inventory">
+                  <td>{{ item.name }}</td>
+                  <td>{{ item.type }}</td>
+                  <td>{{ item.quantity }}</td>
                 </tr>
               </tbody>
             </table>
@@ -224,9 +168,7 @@
           <div class="col">
             <select class="form-select" aria-label="Select Item">
               <option selected>Select Item</option>
-              <option value="1">rice pilaf</option>
-              <option value="2">pita</option>
-              <option value="3">brown rice</option>
+              <option value="{{ index }}" v-for="item in Inventory">{{ item.name }}</option>
             </select>
           </div>
           <div class="col">
@@ -265,9 +207,7 @@
             <div class="col">
               <select class="form-select" aria-label="Select Item">
                 <option selected>Select Item</option>
-                <option value="1">rice pilaf</option>
-                <option value="2">pita</option>
-                <option value="3">brown rice</option>
+              <option v-for="item in Inventory">{{ item.name }}</option>
               </select>
             </div>
           </div>
@@ -281,7 +221,7 @@
 </template>
 
 <style scoped>
-@import "../../assets/inventory.css";
+@import "/src/assets/inventory.css";
 
 .background {
   padding: 10px;
@@ -290,7 +230,20 @@
 </style>
 
 <script>
+import { getInventory } from "/src/services/InventoryService";
+
 export default {
   name: "Inventory",
+  data() {
+    return {
+      Inventory: {},
+    };
+  },
+  mounted() {
+    getInventory().then((response) => {
+      this.Inventory = response.data;
+      console.log(response.data);
+    });
+  },
 };
 </script>
