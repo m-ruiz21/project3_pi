@@ -40,12 +40,12 @@ import CustomerNav from './CustomerNav.vue'
           {
             name: 'Bowl',
             src: 'src/assets/bowl.png',
-            link: '/'
+            link: '/bowl'
           },
           {
             name: 'Sides And Drink',  
             src: 'src/assets/sides.png',
-            link: '/'
+            link: '/sidesanddrink'
           }
         ]
       };
