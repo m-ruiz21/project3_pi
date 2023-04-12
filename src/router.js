@@ -1,7 +1,7 @@
-import Manager from "./components/Manager.vue";
-import Inventory from "./components/ManageInventory.vue";
+import Manager from "./components/Manager/Manager.vue";
+import Inventory from "./components/Manager/ManageInventory.vue";
 import Customer from "./components/Customer/Customer.vue";
-import Server from "./components/Server.vue";
+import Server from "./components/Server/Server.vue";
 import Gyro from "./components/Customer/Gyro.vue"
 
 import { createRouter, createWebHistory } from "vue-router";
