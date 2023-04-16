@@ -7,3 +7,10 @@ export async function getInventory() {
     console.log(response.data);
     return await response;
 }
+
+export async function InventoryRemove(item) {
+    const response = await axios.delete(API_ENDPOINT + "?name=" + item + "&type=menu-item");
+    console.log(item);
+    console.log(response.data);
+    return await response;
+}

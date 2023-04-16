@@ -2,14 +2,13 @@
   text-align: center;
   max-width: 90%;
   margin-top: 30px;
-  padding: 70px;
 }
 
 .my-custom-scrollbar {
   position: relative;
   width: 80vw;
-  height: 50vh;
   overflow: auto;
+  padding-left: 5vw;
 }
 
 .table-wrapper-scroll-y {

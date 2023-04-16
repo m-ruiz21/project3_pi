@@ -24,13 +24,13 @@
             </router-link>
             <ul class="dropdown-menu">
               <li>
-                <router-link class="dropdown-item" to="#">Sales Report</router-link>
+                <router-link class="dropdown-item" to="/manager/sales">Sales Report</router-link>
               </li>
               <li>
-                <router-link class="dropdown-item" to="#">Excess Report</router-link>
+                <router-link class="dropdown-item" to="/manager/excess">Excess Report</router-link>
               </li>
               <li>
-                <router-link class="dropdown-item" to="#">X and Z Report</router-link>
+                <router-link class="dropdown-item" to="/manager/xz">X and Z Report</router-link>
               </li>
             </ul>
           </li>
@@ -42,8 +42,8 @@
     <div class="inventory container align-items-center justify-content-center rounded bg-white">
       <div class="row">
         <div class="col">
-          <h1 class="mb-3">Current Inventory</h1>
-          <div class="table-wrapper-scroll-y my-custom-scrollbar">
+          <h1 class="mt-5 mb-4">Current Inventory</h1>
+          <div class="table-wrapper-scroll-y my-custom-scrollbar mb-5">
             <table v-if="Inventory && Inventory.length" class="table">
               <thead>
                 <tr>
@@ -66,21 +66,21 @@
     </div>
     <div class="container align-items-center mt-4 mb-3 justify-content-center rounded bg-white">
       <ul class="nav nav-tabs" id="myTab" role="tablist">
-        <li class="nav-item" role="presentation">
-          <button class="nav-link active" id="add-tab" data-bs-toggle="tab" data-bs-target="#add" type="button"
-            role="tab" aria-controls="add" aria-selected="true">
+        <li class="nav-item mt-4" role="presentation">
+          <button class="nav-link active" id="add-tab" data-bs-toggle="tab" data-bs-target="#add" type="button" role="tab"
+            aria-controls="add" aria-selected="true">
             Add Item
           </button>
         </li>
-        <li class="nav-item" role="presentation">
-          <button class="nav-link" id="edit-tab" data-bs-toggle="tab" data-bs-target="#edit" type="button"
-            role="tab" aria-controls="edit" aria-selected="false">
+        <li class="nav-item mt-4" role="presentation">
+          <button class="nav-link" id="edit-tab" data-bs-toggle="tab" data-bs-target="#edit" type="button" role="tab"
+            aria-controls="edit" aria-selected="false">
             Edit Item
           </button>
         </li>
-        <li class="nav-item" role="presentation">
-          <button class="nav-link" id="remove-tab" data-bs-toggle="tab" data-bs-target="#remove" type="button"
-            role="tab" aria-controls="remove" aria-selected="false">
+        <li class="nav-item mt-4" role="presentation">
+          <button class="nav-link" id="remove-tab" data-bs-toggle="tab" data-bs-target="#remove" type="button" role="tab"
+            aria-controls="remove" aria-selected="false">
             Remove Item
           </button>
         </li>
@@ -122,12 +122,13 @@
               <div class="col"></div>
               <div class="col mt-3">
                 <div class="form-group">
-                  <input v-model="AddItemPrice" type="text" for="price-add" class="form-control" id="price-add" placeholder="Enter Item Price" />
+                  <input v-model="AddItemPrice" type="text" for="price-add" class="form-control" id="price-add"
+                    placeholder="Enter Item Price" />
                 </div>
               </div>
             </div>
-            <button type="submit" class="btn mt-4 btn-primary">
-              Submit Item
+            <button @click="AddItem" class="btn mt-5 mb-5 btn-primary">
+              Add Item
             </button>
           </form>
         </div>
@@ -159,7 +160,7 @@
                 </div>
               </div>
             </div>
-            <button type="submit" class="btn mt-4 btn-primary">
+            <button @click="EditItem" class="btn mt-5 mb-5 btn-primary">
               Edit Item
             </button>
           </form>
@@ -175,7 +176,7 @@
                 </select>
               </div>
             </div>
-            <button type="submit" class="btn mt-4 btn-primary">
+            <button @click='RemoveItem' class="btn mt-5 mb-5 btn-primary">
               Remove Item
             </button>
           </form>
@@ -186,16 +187,24 @@
 </template>
 
 <style scoped>
-@import "/src/assets/inventory.css";
+@import "/src/assets/table.css";
 
 .background {
   padding: 10px;
   background-color: lightgray;
 }
+
+.my-custom-scrollbar{
+  height: 50vh;
+}
+
+.tab-pane{
+  padding: 0px 40px;
+}
 </style>
 
 <script>
-import { getInventory } from "/src/services/InventoryService";
+import { getInventory, InventoryRemove } from "/src/services/InventoryService";
 
 export default {
   name: "Inventory",
@@ -210,7 +219,31 @@ export default {
       SelectedEditAttribute: '',
       EditItemName: '',
       SelectedRemoveItem: '',
+      returnData: {},
     };
+  },
+  methods: {
+    AddItem() {
+      alert("Item Added")
+    },
+
+    EditItem() {
+      alert("Item Edited")
+    },
+
+    RemoveItem() {
+      alert("Item Removed: " + this.SelectedRemoveItem)
+      // if (this.SelectedRemoveItem != '') {
+      //   InventoryRemove(this.SelectedRemoveItem).then((response) => {
+      //     this.returnData = response.data;
+      //     console.log(response.data);
+      //     alert("Item Removed")
+      //   });
+      // }
+      // else{
+      //   alert("No Item Selected")
+      // }
+    }
   },
   mounted() {
     getInventory().then((response) => {

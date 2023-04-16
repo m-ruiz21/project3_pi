@@ -23,13 +23,13 @@
             </router-link>
             <ul class="dropdown-menu">
               <li>
-                <router-link class="dropdown-item" to="#">Sales Report</router-link>
+                <router-link class="dropdown-item" to="/manager/sales">Sales Report</router-link>
               </li>
               <li>
-                <router-link class="dropdown-item" to="#">Excess Report</router-link>
+                <router-link class="dropdown-item" to="/manager/excess">Excess Report</router-link>
               </li>
               <li>
-                <router-link class="dropdown-item" to="#">X and Z Report</router-link>
+                <router-link class="dropdown-item" to="/manager/xz">X and Z Report</router-link>
               </li>
             </ul>
           </li>
