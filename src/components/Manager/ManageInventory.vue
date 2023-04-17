@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar py-3 navbar-dark navbar-expand-lg" style="background-color: rgb(46, 56, 116)">
+  <nav class="navbar sticky-top py-3 navbar-dark navbar-expand-lg" style="background-color: rgb(46, 56, 116)">
     <div class="container-fluid">
       <a class="navbar-brand" href="/manager">
         <img src="/src/assets/p&hlogo.png" alt="Pom & Honey Logo" width="80" />
@@ -194,11 +194,11 @@
   background-color: lightgray;
 }
 
-.my-custom-scrollbar{
+.my-custom-scrollbar {
   height: 50vh;
 }
 
-.tab-pane{
+.tab-pane {
   padding: 0px 40px;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar py-3 navbar-dark navbar-expand-lg" id="navbar" style="background-color: rgb(46, 56, 116)">
+    <nav class="navbar sticky-top py-3 navbar-dark navbar-expand-lg" id="navbar" style="background-color: rgb(46, 56, 116)">
         <div class="container-fluid">
             <a class="navbar-brand" href="/manager">
                 <img src="/src/assets/p&hlogo.png" alt="Pom & Honey Logo" width="80" />

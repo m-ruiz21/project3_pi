@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar py-3 navbar-dark navbar-expand-lg" id="navbar" style="background-color: rgb(46, 56, 116)">
+    <nav class="navbar sticky-top py-3 navbar-dark navbar-expand-lg" id="navbar" style="background-color: rgb(46, 56, 116)">
         <div class="container-fluid">
             <a class="navbar-brand" href="/manager">
                 <img src="/src/assets/p&hlogo.png" alt="Pom & Honey Logo" width="80" />
@@ -79,56 +79,50 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Category</th>
-                                    <th scope="col">Quantity</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Sales</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>1</td>
-                                    <td>2</td>
-                                    <td>3</td>
+                                    <td>16-04-2023</td>
+                                    <td>10325.24</td>
                                 </tr>
                                 <tr>
-                                    <td>1</td>
-                                    <td>2</td>
-                                    <td>3</td>
+                                    <td>16-04-2023</td>
+                                    <td>10325.24</td>
                                 </tr>
                                 <tr>
-                                    <td>1</td>
-                                    <td>2</td>
-                                    <td>3</td>
+                                    <td>16-04-2023</td>
+                                    <td>10325.24</td>
                                 </tr>
                                 <tr>
-                                    <td>1</td>
-                                    <td>2</td>
-                                    <td>3</td>
+                                    <td>16-04-2023</td>
+                                    <td>10325.24</td>
                                 </tr>
                                 <tr>
-                                    <td>1</td>
-                                    <td>2</td>
-                                    <td>3</td>
+                                    <td>16-04-2023</td>
+                                    <td>10325.24</td>
                                 </tr>
                                 <tr>
-                                    <td>1</td>
-                                    <td>2</td>
-                                    <td>3</td>
+                                    <td>16-04-2023</td>
+                                    <td>10325.24</td>
                                 </tr>
                                 <tr>
-                                    <td>1</td>
-                                    <td>2</td>
-                                    <td>3</td>
+                                    <td>16-04-2023</td>
+                                    <td>10325.24</td>
                                 </tr>
                                 <tr>
-                                    <td>1</td>
-                                    <td>2</td>
-                                    <td>3</td>
+                                    <td>16-04-2023</td>
+                                    <td>10325.24</td>
                                 </tr>
                                 <tr>
-                                    <td>1</td>
-                                    <td>2</td>
-                                    <td>3</td>
+                                    <td>16-04-2023</td>
+                                    <td>10325.24</td>
+                                </tr>
+                                <tr>
+                                    <td>16-04-2023</td>
+                                    <td>10325.24</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -176,11 +170,11 @@ export default {
     height: 100vh;
 }
 
-.my-custom-scrollbar{
+.my-custom-scrollbar {
     height: 55vh;
 }
 
-.container{
+.container {
     padding-bottom: 4%;
 }
 </style>

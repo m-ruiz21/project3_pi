@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar py-3 navbar-dark navbar-expand-lg" style="background-color: rgb(46, 56, 116)">
+    <nav class="navbar sticky-top py-3 navbar-dark navbar-expand-lg" style="background-color: rgb(46, 56, 116)">
         <div class="container-fluid">
             <a class="navbar-brand" href="/manager">
                 <img src="/src/assets/p&hlogo.png" alt="Pom & Honey Logo" width="80" />
@@ -37,7 +37,7 @@
             </div>
         </div>
     </nav>
-    <div class="background mh-100 row">
+    <div class="background row">
         <div class="x-report container align-items-center justify-content-center rounded bg-white">
             <div class="row">
                 <div class="col">
@@ -93,14 +93,14 @@ export default {
     name: "XZReport",
     data() {
         return {
-         name: "Empty",
-         XReport: {},
-         ZReport: {},
+            name: "Empty",
+            XReport: {},
+            ZReport: {},
         };
     },
 
-    methods:{
-        GenerateZReport(){
+    methods: {
+        GenerateZReport() {
             alert("Generate Pressed")
         }
     }
@@ -119,8 +119,8 @@ export default {
 .my-custom-scrollbar {
     position: relative;
     width: 37vw;
-    height: 65vh;
-    overflow: hidden;
+    height: 58vh;
+    overflow: auto;
     padding-left: 2%;
 }
 
@@ -132,7 +132,7 @@ export default {
     background-color: lightgray;
     padding-top: 10px;
     margin-right: 0px;
-    height: 100%;
+    height: 100vh;
 }
 </style>
   
