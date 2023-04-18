@@ -42,22 +42,18 @@
             <div class="row">
                 <div class="col">
                     <h1 class="mt-3 mb-3">X Report</h1>
-                    <div class="table-wrapper-scroll-y my-custom-scrollbar">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Time</th>
-                                    <th scope="col">Sales</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>11:23</td>
-                                    <td>$24.02</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Today's Sales</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>${{ XReport.sales }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -65,7 +61,7 @@
             <div class="col">
                 <h1 class="mt-3 mb-3">Z Report</h1>
                 <div class="table-wrapper-scroll-y my-custom-scrollbar">
-                    <table class="table">
+                    <table v-if="ZReport.length" class="table">
                         <thead>
                             <tr>
                                 <th scope="col">Date</th>
@@ -79,6 +75,7 @@
                             </tr>
                         </tbody>
                     </table>
+                    <h2 class="mt-4" v-else style="font-weight: normal;">Please Press Generate</h2>
                 </div>
                 <button @click='GenerateZReport' class="btn mb-5 btn-primary">
                     Generate
@@ -89,6 +86,9 @@
 </template>
   
 <script>
+
+import { getXReport } from '/src/services/ReportService';
+
 export default {
     name: "XZReport",
     data() {
@@ -103,7 +103,15 @@ export default {
         GenerateZReport() {
             alert("Generate Pressed")
         }
-    }
+    },
+    mounted() {
+        getXReport().then((response) => {
+            this.XReport = response.data;
+            console.log(response.data);
+        }).catch((error) => {
+            alert("Error Retrieving X Report: " + error)
+        });
+    },
 };
 </script>
   

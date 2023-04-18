@@ -156,6 +156,8 @@ export default {
         getInventory().then((response) => {
             this.Inventory = response.data;
             console.log(response.data);
+        }).catch((error) => {
+            alert("Error Retrieving Inventory: " + error)
         });
     },
 };

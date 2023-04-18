@@ -82,12 +82,14 @@
 </template>
   
 <script>
+import { getExcessReport } from '/src/services/ReportService';
+
 export default {
 
     name: "Excess",
     data() {
         return {
-            ItemNames: {},
+            ExcessReport: {},
             StartTime: '',
         };
     },
@@ -97,28 +99,32 @@ export default {
         },
     },
     mounted() {
-        
+        // getExcessReport().then((response) => {
+        //     this.ExcessReport = response.data;
+        //     console.log(response.data);
+        // }).catch((error) => {
+        //     alert("Error Retrieving Excess Report: " + error)
+        // });
     },
 };
 </script>
   
 <style scoped>
-
 .container {
-  text-align: center;
-  max-width: 50%;
-  margin-top: 30px;
+    text-align: center;
+    max-width: 50%;
+    margin-top: 30px;
 }
 
 .my-custom-scrollbar {
-  position: relative;
-  width: 40vw;
-  overflow: auto;
-  padding-left: 7vw;
+    position: relative;
+    width: 40vw;
+    overflow: auto;
+    padding-left: 7vw;
 }
 
 .table-wrapper-scroll-y {
-  display: block;
+    display: block;
 }
 
 .background {
@@ -127,11 +133,11 @@ export default {
     height: 100vh;
 }
 
-.my-custom-scrollbar{
+.my-custom-scrollbar {
     height: 55vh;
 }
 
-.container{
+.container {
     padding-bottom: 4%;
 }
 </style>

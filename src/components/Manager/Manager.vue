@@ -142,6 +142,24 @@ export default {
                 borderColor: 'rgb(46,56,116)'
               }
             ]
+          },
+          options: {
+            plugins: {
+              title: {
+                display: true,
+                text: "Pom & Honey's Recent Sales",
+                padding: {
+                  top: 10,
+                  bottom: 10
+                }
+              }
+            },
+            scales: {
+              y: {
+
+                min: 0,
+              }
+            }
           }
         }
       );
@@ -163,6 +181,8 @@ export default {
           this.RestockCount++;
         }
       }
+    }).catch((error) => {
+      alert("Error Retrieving Inventory: " + error)
     });
 
   }
