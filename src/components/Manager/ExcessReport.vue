@@ -53,7 +53,7 @@
                         </div>
                     </div>
                     <div class="col-3">
-                        <button @click='SubmitReport' class="btn btn-primary">
+                        <button type="button" @click='SubmitReport' class="btn btn-primary">
                             View Report
                         </button>
                     </div>
@@ -66,11 +66,15 @@
                             <thead>
                                 <tr>
                                     <th scope="col">Item Name</th>
+                                    <th scope="col">Quantity</th>
+                                    <th scope="col">Amount Sold</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>brown rice</td>
+                                <tr v-for="item in ExcessReport">
+                                    <td>{{ item.menuItemName }}</td>
+                                    <td>{{ item.quantity }}</td>
+                                    <td>{{ item.amountSold }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -95,16 +99,20 @@ export default {
     },
     methods: {
         SubmitReport() {
-            alert("Button Pressed: " + this.StartTime)
+            if (this.StartTime) {
+                getExcessReport(this.StartTime).then((response) => {
+                    this.ExcessReport = response.data;
+                    console.log(response.data);
+                }).catch((error) => {
+                    alert("Error Retrieving Excess Report: " + error + "\nPlease Enter Time in This Format: YYYY-MM-DD")
+                });
+            }
+            else{
+                alert("Invalid Input")
+            }
         },
     },
     mounted() {
-        // getExcessReport().then((response) => {
-        //     this.ExcessReport = response.data;
-        //     console.log(response.data);
-        // }).catch((error) => {
-        //     alert("Error Retrieving Excess Report: " + error)
-        // });
     },
 };
 </script>
@@ -118,9 +126,9 @@ export default {
 
 .my-custom-scrollbar {
     position: relative;
-    width: 40vw;
+    width: 45vw;
     overflow: auto;
-    padding-left: 7vw;
+    padding-left: 3vw;
 }
 
 .table-wrapper-scroll-y {

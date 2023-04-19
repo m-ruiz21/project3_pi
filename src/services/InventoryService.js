@@ -45,7 +45,6 @@ export async function InventoryEdit(name, attribute, value, item) {
     }
     else {
       alert("You can only edit the quantity of cutlery.")
-      window.location.reload()
     }
   }
   else{

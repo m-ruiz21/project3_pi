@@ -115,18 +115,19 @@ export default {
       Inventory: {},
       RestockItems: [],
       RestockCount: 0,
+      SalesData: {},
     };
   },
   mounted() {
     (async function () {
       const data = [
-        { date: '2023-04-10', sales: 10234.32 },
-        { date: '2023-04-11', sales: 20267.38 },
-        { date: '2023-04-12', sales: 15837.90 },
-        { date: '2023-04-13', sales: 25246.92 },
-        { date: '2023-04-14', sales: 22792.37 },
-        { date: '2023-04-15', sales: 30629.32 },
-        { date: '2023-04-16', sales: 28938.53 },
+        { date: '2023-03-29', sales: 2935.06 },
+        { date: '2023-03-30', sales: 3886.79 },
+        { date: '2023-03-31', sales: 3442.21 },
+        { date: '2023-04-01', sales: 4390.8 },
+        { date: '2023-04-02', sales: 3228.2 },
+        { date: '2023-04-03', sales: 1165.45 },
+        { date: '2023-04-15', sales: 8.34 },
       ];
 
       new Chart(
@@ -137,7 +138,7 @@ export default {
             labels: data.map(row => row.date),
             datasets: [
               {
-                label: 'Past 7 Days in Sales Per Day',
+                label: 'Last 7 Open Days in Sales',
                 data: data.map(row => row.sales),
                 borderColor: 'rgb(46,56,116)'
               }

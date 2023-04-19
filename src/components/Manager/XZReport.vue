@@ -69,15 +69,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>3/2/23</td>
-                                <td>$112424.02</td>
+                            <tr v-for="item in ZReport">
+                                <td>{{ item.date }}</td>
+                                <td> {{ item.sales }}</td>
                             </tr>
                         </tbody>
                     </table>
                     <h2 class="mt-4" v-else style="font-weight: normal;">Please Press Generate</h2>
                 </div>
-                <button @click='GenerateZReport' class="btn mb-5 btn-primary">
+                <button @click='GenerateZReport' class="btn mt-4 mb-5 btn-primary">
                     Generate
                 </button>
             </div>
@@ -87,7 +87,7 @@
   
 <script>
 
-import { getXReport } from '/src/services/ReportService';
+import { getXReport, getZReport } from '/src/services/ReportService';
 
 export default {
     name: "XZReport",
@@ -101,7 +101,24 @@ export default {
 
     methods: {
         GenerateZReport() {
-            alert("Generate Pressed")
+            getZReport().then((response) => {
+                this.ZReport = response.data;
+                console.log(response.data);
+
+                //counts the size of the z report
+                var zCount = 0;
+                for (var i in this.ZReport) {
+                    if (this.ZReport.hasOwnProperty(i)) zCount++;
+                }
+
+                //loops through inventory and sets type for item
+                for (let i = 0; i < zCount; i++) {
+                    this.ZReport[i].date = this.ZReport[i].date.slice(0, -9)
+                }
+
+            }).catch((error) => {
+                alert("Error Retrieving Z Report: " + error)
+            });
         }
     },
     mounted() {

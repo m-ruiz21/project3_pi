@@ -67,7 +67,7 @@
                         </div>
                     </div>
                     <div class="col-2">
-                        <button @click='SubmitReport' class="btn btn-primary">
+                        <button type="button" @click='SubmitReport' class="btn btn-primary">
                             View Report
                         </button>
                     </div>
@@ -88,42 +88,6 @@
                                     <td>16-04-2023</td>
                                     <td>10325.24</td>
                                 </tr>
-                                <tr>
-                                    <td>16-04-2023</td>
-                                    <td>10325.24</td>
-                                </tr>
-                                <tr>
-                                    <td>16-04-2023</td>
-                                    <td>10325.24</td>
-                                </tr>
-                                <tr>
-                                    <td>16-04-2023</td>
-                                    <td>10325.24</td>
-                                </tr>
-                                <tr>
-                                    <td>16-04-2023</td>
-                                    <td>10325.24</td>
-                                </tr>
-                                <tr>
-                                    <td>16-04-2023</td>
-                                    <td>10325.24</td>
-                                </tr>
-                                <tr>
-                                    <td>16-04-2023</td>
-                                    <td>10325.24</td>
-                                </tr>
-                                <tr>
-                                    <td>16-04-2023</td>
-                                    <td>10325.24</td>
-                                </tr>
-                                <tr>
-                                    <td>16-04-2023</td>
-                                    <td>10325.24</td>
-                                </tr>
-                                <tr>
-                                    <td>16-04-2023</td>
-                                    <td>10325.24</td>
-                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -135,6 +99,7 @@
   
 <script>
 import { getInventory } from "/src/services/InventoryService";
+import { getSalesReport } from "/src/services/ReportService";
 
 export default {
 
@@ -142,6 +107,7 @@ export default {
     data() {
         return {
             Inventory: {},
+            SalesReport: {},
             SelectedItem: '',
             StartTime: '',
             EndTime: '',
@@ -149,7 +115,17 @@ export default {
     },
     methods: {
         SubmitReport() {
-            alert("Button Pressed:\n" + this.SelectedItem + "\n" + this.StartTime + "\n" + this.EndTime)
+            if (!this.SelectedItem || !this.StartTime || !this.EndTime) {
+                alert("Invalid Input. Please Try Again")
+            }
+            else {
+                getSalesReport(this.SelectedItem, this.StartTime, this.EndTime).then((response) => {
+                    this.SalesReport = response.data;
+                    console.log(response.data);
+                }).catch((error) => {
+                    alert("Error Retrieving Sales Report: " + error + "\nPlease Enter Time in This Format: YYYY-MM-DD")
+                });
+            }
         },
     },
     mounted() {
