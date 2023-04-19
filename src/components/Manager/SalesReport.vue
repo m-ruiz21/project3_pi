@@ -84,9 +84,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>16-04-2023</td>
-                                    <td>10325.24</td>
+                                <tr v-for="item in SalesReport">
+                                    <td>{{ item.date }}</td>
+                                    <td>{{ item.sales }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -116,7 +116,7 @@ export default {
     methods: {
         SubmitReport() {
             if (!this.SelectedItem || !this.StartTime || !this.EndTime) {
-                alert("Invalid Input. Please Try Again")
+                alert("Invalid Input. Please Try Again \nPlease Enter Time in This Format: YYYY-MM-DD")
             }
             else {
                 getSalesReport(this.SelectedItem, this.StartTime, this.EndTime).then((response) => {

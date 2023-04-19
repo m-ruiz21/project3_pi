@@ -271,8 +271,11 @@ export default {
           alert("Item Edited: " + this.SelectedEditItem)
           window.location.reload()
         }).catch((error) => {
-          alert("Error Editing Item: " + error)
-          window.location.reload()
+          if (!(error instanceof TypeError)) {
+            alert("Error Editing Item: " + error)
+            window.location.reload()
+          }
+          console.log(error)
         });
       }
     },

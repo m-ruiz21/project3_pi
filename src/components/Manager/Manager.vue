@@ -106,6 +106,7 @@
 <script>
 import Chart from 'chart.js/auto';
 import { getInventory } from "/src/services/InventoryService";
+import { getZReport } from "/src/services/ReportService";
 
 export default {
   name: "Manager",
@@ -115,19 +116,55 @@ export default {
       Inventory: {},
       RestockItems: [],
       RestockCount: 0,
-      SalesData: {},
+      salesData: {},
     };
   },
   mounted() {
-    (async function () {
+
+    getInventory().then((response) => {
+      this.Inventory = response.data;
+
+      //counts the size of the inventory
+      var inventoryCount = 0;
+      for (var i in this.Inventory) {
+        if (this.Inventory.hasOwnProperty(i)) inventoryCount++;
+      }
+
+      //loops through inventory and pushes low stock items
+      for (let i = 0; i < inventoryCount; i++) {
+        if (this.Inventory[i].quantity < 2000) {
+          this.RestockItems.push(this.Inventory[i].name)
+          this.RestockCount++;
+        }
+      }
+    }).catch((error) => {
+      alert("Error Retrieving Inventory: " + error)
+    });
+
+    getZReport().then((response) => {
+      this.salesData = response.data;
+      console.log(response.data);
+
+      //counts the size of the z report
+      var count = 0;
+      for (var i in this.salesData) {
+        if (this.salesData.hasOwnProperty(i)) count++;
+      }
+
+      //loops through inventory and sets type for item
+      for (let i = 0; i < count; i++) {
+        this.salesData[i].date = this.salesData[i].date.slice(0, -9)
+      }
+
+      //update data here
       const data = [
-        { date: '2023-03-29', sales: 2935.06 },
-        { date: '2023-03-30', sales: 3886.79 },
-        { date: '2023-03-31', sales: 3442.21 },
-        { date: '2023-04-01', sales: 4390.8 },
-        { date: '2023-04-02', sales: 3228.2 },
-        { date: '2023-04-03', sales: 1165.45 },
-        { date: '2023-04-15', sales: 8.34 },
+        { date: this.salesData[count-7].date, sales: this.salesData[count-7].sales },
+        { date: this.salesData[count-6].date, sales: this.salesData[count-6].sales },
+        { date: this.salesData[count-5].date, sales: this.salesData[count-5].sales },
+        { date: this.salesData[count-4].date, sales: this.salesData[count-4].sales },
+        { date: this.salesData[count-3].date, sales: this.salesData[count-3].sales },
+        { date: this.salesData[count-2].date, sales: this.salesData[count-2].sales },
+        { date: this.salesData[count-1].date, sales: this.salesData[count-1].sales },
       ];
 
       new Chart(
@@ -164,26 +201,9 @@ export default {
           }
         }
       );
-    })();
 
-    getInventory().then((response) => {
-      this.Inventory = response.data;
-
-      //counts the size of the inventory
-      var inventoryCount = 0;
-      for (var i in this.Inventory) {
-        if (this.Inventory.hasOwnProperty(i)) inventoryCount++;
-      }
-
-      //loops through inventory and pushes low stock items
-      for (let i = 0; i < inventoryCount; i++) {
-        if (this.Inventory[i].quantity < 2000) {
-          this.RestockItems.push(this.Inventory[i].name)
-          this.RestockCount++;
-        }
-      }
     }).catch((error) => {
-      alert("Error Retrieving Inventory: " + error)
+      alert("Error Retrieving Sales Data for Chart: " + error)
     });
 
   }

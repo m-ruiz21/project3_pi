@@ -108,7 +108,7 @@ export default {
                 });
             }
             else{
-                alert("Invalid Input")
+                alert("Invalid Input. Please Try Again. \nPlease Enter Time in This Format: YYYY-MM-DD")
             }
         },
     },

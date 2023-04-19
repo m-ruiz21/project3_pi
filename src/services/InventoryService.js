@@ -12,7 +12,7 @@ export async function InventoryAdd(name, category, price, quantity) {
   if (category == 'Cutlery') {
     const response = await axios.post(API_ENDPOINT + "/cutlery/", {
       "name": name.toLowerCase(),
-      "quantity": quantity
+      "quantity": parseInt(quantity)
   });
     console.log(response.data);
     return response;
@@ -21,8 +21,8 @@ export async function InventoryAdd(name, category, price, quantity) {
     const response = await axios.post(API_ENDPOINT + "/menu-item", {
       "name": name.toLowerCase(),
       "category": category.toLowerCase(),
-      "price": price,
-      "quantity": quantity,
+      "price": parseFloat(price),
+      "quantity": parseInt(quantity),
       "cutlery": []
     });
 
@@ -37,7 +37,7 @@ export async function InventoryEdit(name, attribute, value, item) {
     if (attribute == "Quantity") {
       const response = await axios.put(API_ENDPOINT + "/cutlery", {
         "name": name.toLowerCase(),
-        "quantity": value
+        "quantity": parseInt(value)
       });
 
       console.log(response.data);
@@ -55,24 +55,29 @@ export async function InventoryEdit(name, attribute, value, item) {
         break;
         
       case "Price":
-        item.price = value
+        item.price = parseFloat(value)
         break;
 
       case "Quantity":
-        item.quantity = value
+        item.quantity = parseInt(value)
         break;
 
       default:
         break;
     }
 
-    const response = await axios.put(API_ENDPOINT + "/menu-item/" + name, {
+    console.log(item)
+
+    const response = await axios.put(API_ENDPOINT + "/menu-item", {
       "name": name,
       "category": item.type,
       "price": item.price,
       "quantity": item.quantity,
       "cutlery": []
     });
+
+    console.log(response.data);
+    return response;
   }
 }
 
