@@ -86,7 +86,7 @@
                             <tbody>
                                 <tr v-for="item in SalesReport">
                                     <td>{{ item.date }}</td>
-                                    <td>{{ item.sales }}</td>
+                                    <td>{{ item.sold }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -122,6 +122,20 @@ export default {
                 getSalesReport(this.SelectedItem, this.StartTime, this.EndTime).then((response) => {
                     this.SalesReport = response.data;
                     console.log(response.data);
+
+                    //counts the size of the z report
+                    var salesCount = 0;
+                    for (var i in this.SalesReport) {
+                        if (this.SalesReport.hasOwnProperty(i)) salesCount++;
+                    }
+
+                    //loops through inventory and sets type for item
+                    for (let i = 0; i < salesCount; i++) {
+                        this.SalesReport[i].date = this.SalesReport[i].date.slice(0, -9)
+                    }
+
+                    alert("Sales Report Retreived Successfully!")
+
                 }).catch((error) => {
                     alert("Error Retrieving Sales Report: " + error + "\nPlease Enter Time in This Format: YYYY-MM-DD")
                 });
@@ -140,7 +154,25 @@ export default {
 </script>
   
 <style scoped>
-@import "/src/assets/table.css";
+
+.container {
+  text-align: center;
+  max-width: 63vw;
+  margin-top: 30px;
+  padding-bottom: 4%;
+}
+
+.my-custom-scrollbar {
+  position: relative;
+  width: 56vw;
+  overflow: auto;
+  padding-left: 5vw;
+  height: 55vh;
+}
+
+.table-wrapper-scroll-y {
+  display: block;
+}
 
 .background {
     padding-top: 10px;
@@ -148,12 +180,6 @@ export default {
     height: 100vh;
 }
 
-.my-custom-scrollbar {
-    height: 55vh;
-}
 
-.container {
-    padding-bottom: 4%;
-}
 </style>
   
