@@ -1,6 +1,9 @@
 <template>
   <!-- nav bar -->
-  <customer-nav></customer-nav>
+  <navbar></navbar>
+
+  <!-- carousel -->
+  <carousel></carousel>
 
   <!-- menu items -->
   <div class="container">
@@ -26,7 +29,9 @@
 </style>
 
 <script>
-import CustomerNav from './CustomerNav.vue'
+import Navbar from './Navbar.vue'
+import Carousel from './Carousel.vue'
+
   export default {
     name: "Customer",
     data() {
@@ -51,7 +56,8 @@ import CustomerNav from './CustomerNav.vue'
       };
     },
     components: {
-      'customer-nav': CustomerNav
+      'navbar': Navbar,
+      'carousel': Carousel
     },
   };
 </script>
