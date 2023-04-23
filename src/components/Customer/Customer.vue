@@ -5,19 +5,10 @@
   <!-- carousel -->
   <carousel></carousel>
 
-  <!-- menu items -->
-  <div class="container">
-		<div class="row">
-      <div class="row justify-content-center">
-        <div v-for="menuItem in menuItems" :key="menuItem.name" class="col-sm-12 col-md-4 menu-item text-center d-flex flex-column justify-content-center">
-          <a :href="menuItem.link">
-            <img class="menu-item-img" :src="menuItem.src" :alt="menuItem.name"> 
-          </a>
-          <h2 class="h1" style="color: #242B64; font-weight: bold;">{{ menuItem.name }}</h2>
-        </div>
-		  </div>
-    </div>
-	</div>
+  <!-- menu item nav bar -->
+  <menu-nav></menu-nav>
+
+  <menu-items></menu-items>
 </template> 
   
 <style scoped>
@@ -31,6 +22,8 @@
 <script>
 import Navbar from './Navbar.vue'
 import Carousel from './Carousel.vue'
+import MenuItemNavBar from './MenuItemNavBar.vue'
+import MenuItems from '../customer/MenuItems.vue'
 
   export default {
     name: "Customer",
@@ -57,7 +50,9 @@ import Carousel from './Carousel.vue'
     },
     components: {
       'navbar': Navbar,
-      'carousel': Carousel
+      'carousel': Carousel,
+      'menu-nav': MenuItemNavBar,
+      'menu-items': MenuItems
     },
   };
 </script>

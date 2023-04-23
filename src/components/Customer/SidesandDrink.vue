@@ -1,7 +1,4 @@
 <template>
-    <div>
-        <menu-nav></menu-nav>
-    </div>
         <h1>Sides</h1> 
         <ul>
             <li v-for="item in menuItems.side" :key="item.name">{{ item.name }}</li>
@@ -15,12 +12,10 @@
 </template>
 
 <script>
-import MenuItemNav from './MenuItemNav.vue'
 import { getAllMenuItems } from '../../services/MenuItemService.js'
 
 export default {
     components: {
-        'menu-nav': MenuItemNav 
     },
     data() {
         return {

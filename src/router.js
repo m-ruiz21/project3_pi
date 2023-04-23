@@ -19,9 +19,6 @@ const routes = [
   { name: "ExcessReport", component: ExcessReport, path: "/manager/excess" },
   { name: "Server", component: Server, path: "/server" },
   { name: "Customer", component: Customer, path: "/" },
-  { name: "Gyro", component: Gyro, path: "/gyro" },
-  { name: "Bowl", component: Bowl, path: "/bowl" },
-  { name: "SidesandDrink", component: SidesandDrink, path: "/sidesanddrink"}
 ];
 
 const router = createRouter({
