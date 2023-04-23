@@ -5,7 +5,7 @@
       <a class="navbar-brand" href="#">
         <img src="../../assets/p&hlogo.png" alt="Pom and Honey Logo" height="75">
       </a>
-      <div class="collapse navbar-collapse justify-content-end">
+      <div class="justify-content-end">
         <ul class="navbar-nav">
           <li class="nav-item">
             <a class="nav-link" href="#">

@@ -91,4 +91,16 @@ export default {
     margin-top: 10px;
     max-width: 25vw;
   }
+
+  @media (max-width: 767px) {
+    .card-img-top {
+      width: 100%;
+      height: auto; 
+    }
+
+    .card {
+      margin-top: 10px;
+      max-width: 100%;
+    }
+  }
 </style>

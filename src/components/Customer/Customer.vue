@@ -8,7 +8,12 @@
   <!-- menu item nav bar -->
   <menu-nav></menu-nav>
 
+  <!-- menu items -->
   <menu-items></menu-items>
+
+  <!-- footer -->
+  <customer-footer>
+  </customer-footer>
 </template> 
   
 <style scoped>
@@ -24,6 +29,7 @@ import Navbar from './Navbar.vue'
 import Carousel from './Carousel.vue'
 import MenuItemNavBar from './MenuItemNavBar.vue'
 import MenuItems from '../customer/MenuItems.vue'
+import Footer from '../customer/Footer.vue'
 
   export default {
     name: "Customer",
@@ -52,7 +58,8 @@ import MenuItems from '../customer/MenuItems.vue'
       'navbar': Navbar,
       'carousel': Carousel,
       'menu-nav': MenuItemNavBar,
-      'menu-items': MenuItems
+      'menu-items': MenuItems,
+      'customer-footer': Footer
     },
   };
 </script>
