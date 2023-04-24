@@ -153,7 +153,7 @@ export default {
 
       //loops through inventory and sets type for item
       for (let i = 0; i < count; i++) {
-        this.salesData[i].date = this.salesData[i].date.slice(0, -9)
+        this.salesData[i].date = this.salesData[i].date.slice(0, -23)
       }
 
       //update data here
