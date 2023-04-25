@@ -83,11 +83,14 @@
             </div>
         </div>
     </div>
+    <manager-footer></manager-footer>
 </template>
   
 <script>
 
 import { getXReport, getZReport } from '/src/services/ReportService';
+import Footer from "/src/components/Manager/Footer.vue"
+
 
 export default {
     name: "XZReport",
@@ -97,6 +100,10 @@ export default {
             XReport: {},
             ZReport: {},
         };
+    },
+
+    components: {
+        'manager-footer': Footer
     },
 
     methods: {

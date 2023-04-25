@@ -83,10 +83,12 @@
             </div>
         </div>
     </div>
+    <manager-footer></manager-footer>
 </template>
   
 <script>
 import { getExcessReport } from '/src/services/ReportService';
+import Footer from "/src/components/Manager/Footer.vue"
 
 export default {
 
@@ -103,7 +105,6 @@ export default {
                 getExcessReport(this.StartTime).then((response) => {
                     this.ExcessReport = response.data;
                     console.log(response.data);
-                    alert("Excess Report Retreived Successfully!")
                 }).catch((error) => {
                     alert("Error Retrieving Excess Report: " + error + "\nPlease Enter Time in This Format: YYYY-MM-DD")
                 });
@@ -112,6 +113,9 @@ export default {
                 alert("Invalid Input. Please Try Again. \nPlease Enter Time in This Format: YYYY-MM-DD")
             }
         },
+    },
+    components: {
+      'manager-footer': Footer
     },
     mounted() {
     },

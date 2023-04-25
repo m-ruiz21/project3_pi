@@ -95,11 +95,13 @@
             </div>
         </div>
     </div>
+    <manager-footer></manager-footer>
 </template>
   
 <script>
 import { getInventory } from "/src/services/InventoryService";
 import { getSalesReport } from "/src/services/ReportService";
+import Footer from "/src/components/Manager/Footer.vue"
 
 export default {
 
@@ -112,6 +114,9 @@ export default {
             StartTime: '',
             EndTime: '',
         };
+    },
+    components: {
+      'manager-footer': Footer
     },
     methods: {
         SubmitReport() {
@@ -133,8 +138,6 @@ export default {
                     for (let i = 0; i < salesCount; i++) {
                         this.SalesReport[i].date = this.SalesReport[i].date.slice(0, -9)
                     }
-
-                    alert("Sales Report Retreived Successfully!")
 
                 }).catch((error) => {
                     alert("Error Retrieving Sales Report: " + error + "\nPlease Enter Time in This Format: YYYY-MM-DD")

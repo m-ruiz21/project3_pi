@@ -184,6 +184,7 @@
       </div>
     </div>
   </div>
+  <manager-footer></manager-footer>
 </template>
 
 <style scoped>
@@ -205,6 +206,7 @@
 
 <script>
 import { getInventory, InventoryAdd, InventoryRemove, InventoryEdit } from "/src/services/InventoryService";
+import Footer from "/src/components/Manager/Footer.vue"
 
 export default {
   name: "Inventory",
@@ -222,6 +224,9 @@ export default {
       returnData: {},
     };
   },
+  components: {
+      'manager-footer': Footer
+    },
   methods: {
     AddItem() {
       if (!this.SelectedAddCategory || !this.AddItemName || !this.AddItemQuantity || !this.AddItemPrice) {
