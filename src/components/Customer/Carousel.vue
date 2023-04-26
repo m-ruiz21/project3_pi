@@ -41,6 +41,7 @@
 <script>
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import $ from 'jquery';
 
 export default {
   data() {
@@ -69,13 +70,8 @@ export default {
         }
       ]
     };
-  },
-  mounted() {
-    $(document).ready(() => {
-        $('#carouselExampleControls').carousel();
-    });  
   }
-};
+}
 </script>
 
 <style>

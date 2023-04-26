@@ -12,8 +12,7 @@
   <menu-items></menu-items>
 
   <!-- footer -->
-  <customer-footer>
-  </customer-footer>
+  <customer-footer></customer-footer>
 </template> 
   
 <style scoped>
