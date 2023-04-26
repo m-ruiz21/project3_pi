@@ -11,15 +11,25 @@
             </div>
             <div class="col-md-6 col-12 text-md-end text-center mt-md-0 mt-2">
                 <p>&copy; 2023 Team Pi</p>
+                <div>
+                    <div class="d-flex translate flex-row-reverse">
+                    <div id="google_translate_element"></div>
+                </div>
             </div>
         </div>
+    </div>
     </div>
   </footer>
 </template>
 
 <script>
 export default {
-  name: 'Footer'
+  name: 'Footer',
+  mounted() {
+        let translateS = document.createElement('script')
+        translateS.setAttribute('src', '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit')
+        document.head.appendChild(translateS)
+    },
 }
 </script>
 

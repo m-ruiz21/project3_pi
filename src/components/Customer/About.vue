@@ -4,7 +4,7 @@
     <navbar></navbar>
 
     <!-- Add text here -->
-    <div class="col-md-12">
+    <div class="about-box">
     <h1 class="text-left font-weight-bold">About Us</h1>
     <p class="text-left pl-5" style="padding-left: 5px !important;">
     Welcome to Pom and Honey, a Mediterranean grill located in the heart of the city. We are proud to be a part of the local A&M community serving fresh and healthy food inspired by the flavors of the Mediterranean.
@@ -34,6 +34,7 @@
     h1 {
       text-align: center;
     }
+    
   </style>
   
   <script>

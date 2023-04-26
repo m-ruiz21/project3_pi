@@ -16,6 +16,9 @@
           <li class="nav-item">
             <router-link class="nav-link" to="/manager/inventory">Manage Inventory</router-link>
           </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/server">Place Orders</router-link>
+          </li>
           <li class="nav-item dropdown">
             <router-link class="nav-link dropdown-toggle" to="#" role="button" data-bs-toggle="dropdown"
               aria-expanded="false">
@@ -34,16 +37,34 @@
             </ul>
           </li>
         </ul>
+        <ul v-if="isAuthenticated" class="navbar-nav justify-content-end align-items-center" style="margin-right: 120px;">
+          <div class="dropdown">
+            <img class="rounded-circle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+              aria-expanded="false" :src="user.picture" height="40">
+            <ul class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton1">
+              <li>
+                <button class="btn" @click="logout">Sign out</button>
+              </li>
+            </ul>
+          </div>
+          <h5 style="margin: 5px 0px 0px 8px; font-size: 17px;" >{{ user.given_name }}</h5>
+        </ul>
       </div>
     </div>
   </nav>
   <div class="background">
     <div class="container">
       <div class="row">
-        <div class="col-md-11 py-4 rounded-5 container d-flex align-items-center justify-content-center bg-white"
+        <div v-if="isAuthenticated"
+          class="col-md-11 py-4 rounded-5 container d-flex align-items-center justify-content-center bg-white"
           style="margin-top: 45px">
-          <img src="src/assets/user-icon.png" alt="User's Profile Picture" width="50" />
-          <h1 style="margin-left: 15px">Howdy, {{ name }}!</h1>
+          <h1 style="margin-left: 15px">Welcome, {{ user.given_name }}!</h1>
+        </div>
+        <div v-else class="col-md-11 py-4 rounded-5 container d-flex align-items-center justify-content-center bg-white"
+          style="margin-top: 45px">
+          <img class="rounded-circle" style="margin-top: -5px;" src="/src/assets/user-icon.png"
+            alt="User's Profile Picture" width="50" />
+          <h1 style="margin-left: 15px">Welcome, Manager!</h1>
         </div>
       </div>
     </div>
@@ -84,7 +105,9 @@
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@500&display=swap');
 
-.background, h1, h5 {
+.background,
+h1,
+h5 {
   font-family: 'Lato', sans-serif;
   letter-spacing: 0.1px;
 }
@@ -110,15 +133,15 @@
 }
 
 @media (max-width: 1200px) {
-  .restock{
+  .restock {
     margin: 30px;
   }
 
-  .content, .rounded-5{
+  .content,
+  .rounded-5 {
     width: 80vw;
   }
 }
-
 </style>
 
 <script>
@@ -136,10 +159,25 @@ export default {
       RestockItems: [],
       RestockCount: 0,
       salesData: {},
+      user: this.$auth0.user,
+      isAuthenticated: this.$auth0.isAuthenticated,
+      isLoading: this.$auth0.isLoading,
     };
   },
   components: {
     'manager-footer': Footer
+  },
+  methods: {
+    login() {
+      this.$auth0.loginWithRedirect();
+    },
+    logout() {
+      this.$auth0.logout({
+        logoutParams: {
+          returnTo: window.location.origin
+        }
+      });
+    }
   },
   mounted() {
 
