@@ -53,12 +53,14 @@ export default {
     cursor: pointer;
     margin-bottom: 10px;
     padding: 20px;
-    border: 2px solid black;
+    border: 3px solid #242B64;
     border-radius: 10px;
     transition: background-color .1s ease-out;
 }
 
 .checked {
+  background-color: #242B64;
+  color: white;
   animation-name: splash;
   animation-duration: .3s;
 }
@@ -67,11 +69,8 @@ export default {
   0% {
     background-color: #fff;
   }
-  30% {
-    background-color: #242B64;
-  }
   100% {
-    background-color: #fff;
+    background-color: #242B64;
   }
 }
 
@@ -86,16 +85,26 @@ export default {
 }
 
 .checkbox-box i {
-    color: #ffffff;
+    color: #fff;
+}
+
+.checked .checkbox-box i {
+    color: #242B64;
 }
 
 .checked .checkbox-box {
-    background-color: #242B64;
-    border-color: #242B64;
+    background-color: #ffff;
+    border-color: #ffff;
+    box-shadow: 0 0 0 2px #ffffff;
 }
 
 .label {
     font-size: x-large;
     font-weight: 600;
+    color: #242B64;
+}
+
+.checked .label {
+    color: #ffff;
 }
 </style>

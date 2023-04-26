@@ -32,27 +32,6 @@ import Footer from '../customer/Footer.vue'
 
   export default {
     name: "Customer",
-    data() {
-      return {
-        menuItems: [
-          {
-            name: 'Gyro',
-            src: 'src/assets/gyro.png',
-            link: '/gyro'
-          },
-          {
-            name: 'Bowl',
-            src: 'src/assets/bowl.png',
-            link: '/bowl'
-          },
-          {
-            name: 'Sides And Drink',  
-            src: 'src/assets/sides.png',
-            link: '/sidesanddrink'
-          }
-        ]
-      };
-    },
     components: {
       'navbar': Navbar,
       'carousel': Carousel,

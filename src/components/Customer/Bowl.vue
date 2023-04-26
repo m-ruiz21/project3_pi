@@ -6,15 +6,16 @@
     <div class="banner"> 
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-md-6 order-md-2 align-items-center">
+                <div class="col-lg-6 col-12 order-md-2">
                     <div class="banner-content">
-                        <h1> {{ $route.params.name.toUpperCase() }} BOWL </h1>
+                        <h1> {{ name.toUpperCase() }} </h1>
+                        <p> {{ media.description }}</p>
                     </div>
                 </div>
-                <div class="col-md-6 order-md-1 align-items-end">
+                <div class="d-none d-lg-block col-lg-6 order-md-1 align-items-end">
                     <div class="d-flex justify-content-end">
                         <div class="banner-image">
-                            <img src="../../assets/food/falafel bowl.svg" alt="alt" class="img-fluid">
+                            <img :src="media.img" :alt="media.alt" class="img-fluid">
                         </div>
                     </div>
                 </div>
@@ -24,9 +25,12 @@
 
     <!-- Order -->
     <div class="container" style="margin-top: 2%">
+
+        <!-- Base -->
+        <base-selector @update-base="updateBase"/>
         
         <!-- Protein  -->
-        <protein-selector :extraMeat="true" @update-extraMeat="updateExtraMeat"/>
+        <protein-selector @update-extraMeat="updateExtraMeat"/>
 
         <!-- Toppings -->
         <h1 style="margin-top: 2%;">Toppings:</h1>
@@ -39,7 +43,7 @@
         <h3 class="price">Item Total: {{ price.toFixed(2) }}</h3>
         
         <div class="submit-btn">
-            <button type="submit" class="btn btn-outline-light mt-4">Add To Cart</button>
+            <button type="submit" class="btn btn-outline-light mt-4" v-on:click="addToCart()">Add To Cart</button>
         </div>
     </div>
 
@@ -56,6 +60,7 @@ import ProteinSelector from './ProteinSelector.vue'
 import CheckBox from './CheckBox.vue'
 import CheckboxGrid from './CheckboxGrid.vue'  
 import Footer from './Footer.vue'
+import BaseSelector from './BaseSelector.vue'
 
 export default {
     components: {
@@ -65,6 +70,7 @@ export default {
         'checkbox': CheckBox,
         'checkbox-grid': CheckboxGrid,
         'customer-footer': Footer,
+        'base-selector': BaseSelector,
     },
     data() {
         return {
@@ -73,22 +79,28 @@ export default {
             extra_dressing_price: 0,
             menuItems: {},
             extraMeat: false,
+            pilafOrdered: false,
             price: 0,
             orderedMenuItems: {
                 protein: `${this.$route.params.name}`,
                 topping: [],
                 dressing: [],
             },
-            name: `${this.$route.params.name} Bowl`, 
+            name: `${this.$route.params.name} Bowl`,
+            media: {
+                src: "",
+                alt: "",
+                description: "",
+            },
         }
     },
     methods: {
-        sleep(ms) {
-            return new Promise((resolve) => setTimeout(resolve, ms));
-        },
         updateExtraMeat(newValue) {
             this.extraMeat = newValue;
             this.updatePrice();
+        },
+        updateBase(newValue) {
+            this.pilafOrdered = newValue;
         },
         updateToppings(newValue) {
             this.orderedMenuItems.topping = newValue;
@@ -102,6 +114,7 @@ export default {
             if (this.extraMeat) {
                 this.price += this.extra_protein_price;
             }
+
             if (this.orderedMenuItems.topping.length > 0)
             {
                 this.price += this.extra_dressing_price * (this.orderedMenuItems.dressing.length - 1);
@@ -109,23 +122,61 @@ export default {
             }
         },
         addToCart() {
-            var cartItem = [];
+            var cartItemMenuItems = [];
+            cartItemMenuItems.push(this.orderedMenuItems.protein);
+            
             if (this.extraMeat) {
-                cartItem.push("extra meat");
+                cartItemMenuItems.push("extra meat");
+            }
+            
+            if (this.pilafOrdered) {
+                cartItemMenuItems.push("rice pilaf");
+            } else {
+                cartItemMenuItems.push("brown rice");
             }
             
             for (var i = 0; i < this.orderedMenuItems.topping.length; i++) {
-                cartItem.push(this.orderedMenuItems.topping[i]);
+                cartItemMenuItems.push(this.orderedMenuItems.topping[i]);
             }
 
             for (var i = 0; i < this.orderedMenuItems.dressing.length; i++) {
-                cartItem.push(this.orderedMenuItems.dressing[i]);
+                cartItemMenuItems.push(this.orderedMenuItems.dressing[i]);
             }
 
-            console.log(cartItem);
+            console.log(cartItemMenuItems); 
+
+            var cartItem = {
+                name: `${this.name}`,
+                price: this.price,
+                menuItems: cartItemMenuItems,
+            }
+
+            // add cartItem to cart in local storage
+
+        },
+        getMedia() {
+            const name = this.$route.params.name;
+            if (name === 'falafel') {
+                this.media = {
+                    img: '/src/assets/food/falafel bowl.svg',
+                    alt: 'falafel bowl',
+                    description: 'Fresh Falafel With Your Choice of Brown or Pilaf Rice, toppings, and dressing',
+                };
+            } else if (name === 'meatball') {
+                this.name = 'SPICY MEATBALL';
+                this.media = {
+                    img: '/src/assets/food/SpicyMeatball.svg',
+                    alt: 'meatball bowl',
+                    description: 'Spicy Meatball With Your Choice of Brown or Pilaf Rice, toppings, and dressing.',
+                };
+            }
+
+            console.log(this.media);
         }
     },
     mounted() {
+        this.getMedia(),
+        console.log(this.media),
         getAllMenuItems().then((response) => {
             this.menuItems = response.data
         }),
@@ -139,6 +190,8 @@ export default {
         getMenuItemByName(`extra dressing`).then((response) => {
             this.extra_dressing_price = response.data.price
         })
+    },
+    computed: {
     }
 }
 </script>
@@ -157,6 +210,12 @@ export default {
     font-size: 42px;
     font-weight: bold;
     margin-bottom: 10px;
+}
+
+.banner-content p {
+    font-size: 20px;
+    line-height: 1.5;
+    margin-bottom: 20px;
 }
 
 .banner-image {

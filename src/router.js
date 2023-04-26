@@ -24,7 +24,8 @@ const routes = [
   { name: "Customer", component: Customer, path: "/" },
   { name: "NotFound", component: NotFound, path: "/not-found" },
   { name: "Bowl", component: Bowl, path: "/bowl/:name", beforeEnter: isValidRoute},
-  { name: "About", component: About, path: "/About"}
+  { name: "About", component: About, path: "/About"},
+  { name: "Not Found", path: '/:catchAll(.*)', component: NotFound }
 ];
 
 const router = createRouter({

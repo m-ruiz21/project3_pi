@@ -10,7 +10,7 @@
                                 <h3>{{image.subtitle}}</h3>
                                 <h1>{{image.title}}</h1>
                                 <p>{{image.description}}</p>
-                                <a>
+                                <a :href="image.orderLink">
                                     <button class="btn btn-outline-light" style="max-width: 25%;">Order Now</button>     
                                 </a>
                             </div>
@@ -41,7 +41,6 @@
 <script>
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import $ from 'jquery';
 
 export default {
   data() {
@@ -52,26 +51,29 @@ export default {
             alt: 'Spicy Meatball Bowl Image', 
             subtitle: 'Bold flavor, every bite.', 
             title: 'SPICY MEATBALL BOWL', 
-            description: 'Spice up your meal game with our Mediterranean-inspired Spicy Meatball Bowl.' 
+            description: 'Spice up your meal game with our Mediterranean-inspired Spicy Meatball Bowl.',
+            orderLink: 'bowl/meatball',
         }, 
         {   
             src: 'src/assets/food/falafel bowl.svg', 
             alt: 'Falafel Bowl Image', 
             subtitle: 'Healthy Has Never Tasted So Good', 
             title: 'FALAFEL BOWL', 
-            description: 'Take your taste buds on a Mediterranean adventure with our Falafel Bowl.' 
+            description: 'Take your taste buds on a Mediterranean adventure with our Falafel Bowl.',
+            orderLink: 'bowl/falafel',
         },
         {
             src: 'src/assets/food/falafel pita.svg',
             alt: 'Falafel Pita Image',
             subtitle: 'Bold Flavors, On the Go',
             title: 'FALAFEL PITA',
-            description: 'The perfect option for those who want to enjoy a taste of the Mediterranean on the go.'
+            description: 'The perfect option for those who want to enjoy a taste of the Mediterranean on the go.',
+            orderLink: 'pita/falafel',
         }
       ]
     };
   }
-}
+};
 </script>
 
 <style>
