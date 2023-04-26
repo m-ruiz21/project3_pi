@@ -16,6 +16,9 @@
                     <li class="nav-item">
                         <router-link class="nav-link" to="/manager/inventory">Manage Inventory</router-link>
                     </li>
+                    <li class="nav-item">
+                        <router-link class="nav-link" to="/server">Place Orders</router-link>
+                    </li>
                     <li class="nav-item dropdown">
                         <router-link class="nav-link dropdown-toggle active" to="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
@@ -33,6 +36,19 @@
                             </li>
                         </ul>
                     </li>
+                </ul>
+                <ul v-if="isAuthenticated" class="navbar-nav justify-content-end align-items-center"
+                    style="margin-right: 120px;">
+                    <div class="dropdown">
+                        <img class="rounded-circle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                            aria-expanded="false" :src="user.picture" height="40">
+                        <ul class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton1">
+                            <li>
+                                <button class="btn" @click="logout">Sign out</button>
+                            </li>
+                        </ul>
+                    </div>
+                    <h5 style="margin: 5px 0px 0px 8px; font-size: 17px;">{{ user.given_name }}</h5>
                 </ul>
             </div>
         </div>
@@ -97,6 +113,9 @@ export default {
         return {
             ExcessReport: {},
             StartTime: '',
+            user: this.$auth0.user,
+            isAuthenticated: this.$auth0.isAuthenticated,
+            isLoading: this.$auth0.isLoading,
         };
     },
     methods: {
@@ -109,13 +128,23 @@ export default {
                     alert("Error Retrieving Excess Report: " + error + "\nPlease Enter Time in This Format: YYYY-MM-DD")
                 });
             }
-            else{
+            else {
                 alert("Invalid Input. Please Try Again. \nPlease Enter Time in This Format: YYYY-MM-DD")
             }
         },
+        login() {
+            this.$auth0.loginWithRedirect();
+        },
+        logout() {
+            this.$auth0.logout({
+                logoutParams: {
+                    returnTo: window.location.origin
+                }
+            });
+        }
     },
     components: {
-      'manager-footer': Footer
+        'manager-footer': Footer
     },
     mounted() {
     },
@@ -125,9 +154,11 @@ export default {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@500&display=swap');
 
-.background, h1, h5 {
-  font-family: 'Lato', sans-serif;
-  letter-spacing: 0.1px;
+.background,
+h1,
+h5 {
+    font-family: 'Lato', sans-serif;
+    letter-spacing: 0.1px;
 }
 
 .container {
