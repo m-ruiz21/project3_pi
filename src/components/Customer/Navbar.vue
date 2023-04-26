@@ -8,7 +8,7 @@
       <div class="justify-content-end" >
         <ul class="navbar-nav">
 
-          <li class="about">
+          <li class="nav-item about">
             <a class = "about-link" href="/about" style="max-width: 25%;">About</a>
     
           </li>
@@ -35,23 +35,20 @@
 
 <style scoped>
 .about-link {
-  display: inline-block;
-  padding: 10px;
-  background-color: #242B64;
-  color: #fff;
+  /* display: inline-block; */
+  padding: 5px;
+  padding-right: 80px;
+  margin-top: 5px;
   text-decoration: none;
+  color: black;
+  font-size: 25px;
+  font-weight: semi-bold;
   border: none;
   font-size: 25px;
-  border-radius: 10px;
-  right: 20%;
-  position: fixed;
-  top: 25px;
 }
 
 .about-link:hover {
-  background-color: #fff;
-  color: #000;
-  text-decoration: none;
-  border: 1px solid #000;
+  color: black;
+  text-decoration: underline;
 }
 </style>
