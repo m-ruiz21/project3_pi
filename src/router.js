@@ -9,6 +9,8 @@ import Gyro from "./components/Customer/Gyro.vue";
 import Bowl from "./components/Customer/Bowl.vue";
 import About from "./components/Customer/About.vue";
 import SidesandDrink from "./components/Customer/SidesandDrink.vue";
+import { isValidRoute } from "./services/ValidationService.js";
+import NotFound from "./components/Common/NotFound.vue";
 
 import { createRouter, createWebHistory } from "vue-router";
 
@@ -20,6 +22,8 @@ const routes = [
   { name: "ExcessReport", component: ExcessReport, path: "/manager/excess" },
   { name: "Server", component: Server, path: "/server" },
   { name: "Customer", component: Customer, path: "/" },
+  { name: "NotFound", component: NotFound, path: "/not-found" },
+  { name: "Bowl", component: Bowl, path: "/bowl/:name", beforeEnter: isValidRoute},
   { name: "About", component: About, path: "/About"}
 ];
 

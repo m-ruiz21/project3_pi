@@ -12,7 +12,6 @@
             <li v-for="item in menuItems.dressing" :key="item.name">{{ item.name }}</li>
         </ul>
         <button type="submit" class="btn mt-4 btn-primary">Submit Item</button>
-
 </template>
 
 <script>

@@ -2,7 +2,7 @@
   
   <nav class="navbar navbar-expand-md navbar-light bg-white">
     <div class="container">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="/">
         <img src="../../assets/p&hlogo.png" alt="Pom and Honey Logo" height="75">
       </a>
       <div class="justify-content-end" >
