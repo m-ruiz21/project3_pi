@@ -70,11 +70,11 @@ export default {
       ]
     };
   },
-  mounted() {
-    $(document).ready(() => {
-        $('#carouselExampleControls').carousel();
-    });  
-  }
+  // mounted() {
+  //   $(document).ready(() => {
+  //       $('#carouselExampleControls').carousel();
+  //   });  
+  // }
 };
 </script>
 
