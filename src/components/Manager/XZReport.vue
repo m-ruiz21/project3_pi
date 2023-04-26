@@ -83,11 +83,14 @@
             </div>
         </div>
     </div>
+    <manager-footer></manager-footer>
 </template>
   
 <script>
 
 import { getXReport, getZReport } from '/src/services/ReportService';
+import Footer from "/src/components/Manager/Footer.vue"
+
 
 export default {
     name: "XZReport",
@@ -97,6 +100,10 @@ export default {
             XReport: {},
             ZReport: {},
         };
+    },
+
+    components: {
+        'manager-footer': Footer
     },
 
     methods: {
@@ -113,7 +120,7 @@ export default {
 
                 //loops through inventory and sets type for item
                 for (let i = 0; i < zCount; i++) {
-                    this.ZReport[i].date = this.ZReport[i].date.slice(0, -9)
+                    this.ZReport[i].date = this.ZReport[i].date.slice(0, -23)
                 }
 
             }).catch((error) => {
@@ -133,6 +140,13 @@ export default {
 </script>
   
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@500&display=swap');
+
+.background, h1, h5 {
+  font-family: 'Lato', sans-serif;
+  letter-spacing: 0.1px;
+}
+
 .container {
     text-align: center;
     justify-content: center;

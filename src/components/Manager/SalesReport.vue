@@ -68,7 +68,7 @@
                     </div>
                     <div class="col-2">
                         <button type="button" @click='SubmitReport' class="btn btn-primary">
-                            View Report
+                            Generate
                         </button>
                     </div>
                 </div>
@@ -95,11 +95,13 @@
             </div>
         </div>
     </div>
+    <manager-footer></manager-footer>
 </template>
   
 <script>
 import { getInventory } from "/src/services/InventoryService";
 import { getSalesReport } from "/src/services/ReportService";
+import Footer from "/src/components/Manager/Footer.vue"
 
 export default {
 
@@ -112,6 +114,9 @@ export default {
             StartTime: '',
             EndTime: '',
         };
+    },
+    components: {
+      'manager-footer': Footer
     },
     methods: {
         SubmitReport() {
@@ -134,8 +139,6 @@ export default {
                         this.SalesReport[i].date = this.SalesReport[i].date.slice(0, -9)
                     }
 
-                    alert("Sales Report Retreived Successfully!")
-
                 }).catch((error) => {
                     alert("Error Retrieving Sales Report: " + error + "\nPlease Enter Time in This Format: YYYY-MM-DD")
                 });
@@ -154,6 +157,12 @@ export default {
 </script>
   
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@500&display=swap');
+
+.background, h1, h5 {
+  font-family: 'Lato', sans-serif;
+  letter-spacing: 0.1px;
+}
 
 .container {
   text-align: center;

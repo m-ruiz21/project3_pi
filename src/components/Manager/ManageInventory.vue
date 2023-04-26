@@ -184,10 +184,17 @@
       </div>
     </div>
   </div>
+  <manager-footer></manager-footer>
 </template>
 
 <style scoped>
 @import "/src/assets/table.css";
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@500&display=swap');
+
+.background, h1, h5 {
+  font-family: 'Lato', sans-serif;
+  letter-spacing: 0.1px;
+}
 
 .background {
   padding: 10px;
@@ -205,6 +212,7 @@
 
 <script>
 import { getInventory, InventoryAdd, InventoryRemove, InventoryEdit } from "/src/services/InventoryService";
+import Footer from "/src/components/Manager/Footer.vue"
 
 export default {
   name: "Inventory",
@@ -222,6 +230,9 @@ export default {
       returnData: {},
     };
   },
+  components: {
+      'manager-footer': Footer
+    },
   methods: {
     AddItem() {
       if (!this.SelectedAddCategory || !this.AddItemName || !this.AddItemQuantity || !this.AddItemPrice) {

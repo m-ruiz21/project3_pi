@@ -40,23 +40,22 @@
   <div class="background">
     <div class="container">
       <div class="row">
-        <div class="col py-4 rounded-pill container d-flex align-items-center justify-content-center bg-white"
+        <div class="col-md-11 py-4 rounded-5 container d-flex align-items-center justify-content-center bg-white"
           style="margin-top: 45px">
           <img src="src/assets/user-icon.png" alt="User's Profile Picture" width="50" />
           <h1 style="margin-left: 15px">Howdy, {{ name }}!</h1>
         </div>
       </div>
     </div>
-    <div class="container mt-4 d-flex align-items-center justify-content-center">
-      <div class="row">
-        <div class="col-md-auto content rounded d-flex align-items-center justify-content-center bg-white">
-          <div class="" style="width: 700px;"><canvas id="salesChart"></canvas></div>
+    <div class="container">
+      <div class="row align-items-center justify-content-evenly">
+        <div class="col-lg-7 mt-4 mb-4 content rounded d-flex align-items-center justify-content-center bg-white">
+          <canvas id="salesChart"></canvas>
         </div>
-        <div class="col px-5"></div>
-        <div class="col-md-auto content bg-white rounded px-5">
-          <h2 class="mt-3 text-center">Restock Report</h2>
+        <div class=" col-md-auto mt-4 mb-4 restock content bg-white rounded px-5">
+          <h2 class="h2 mt-3 text-center">Restock Report</h2>
           <div v-if="RestockCount">
-            <h5 style="font-weight: normal;" class="text-center mb-3">The Following Items Need To Be Restocked</h5>
+            <h5 style="font-weight: normal;" class="text-center mb-3 h5">Please Restock the Following Items</h5>
             <div class="table-wrapper-scroll-y my-custom-scrollbar">
               <table class="table">
                 <thead>
@@ -73,17 +72,25 @@
             </div>
           </div>
           <div v-else>
-            <h5 style="font-weight: normal;" class="text-center mb-3">No Items Need To Be Restocked</h5>
+            <h5 style="font-weight: normal;" class="h5 text-center mb-3">No Items Need To Be Restocked</h5>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <manager-footer></manager-footer>
 </template>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@500&display=swap');
+
+.background, h1, h5 {
+  font-family: 'Lato', sans-serif;
+  letter-spacing: 0.1px;
+}
+
 .background {
-  height: 95vh;
+  min-height: 95vh;
   background-color: lightgray;
 }
 
@@ -101,12 +108,24 @@
 .content {
   height: 60vh;
 }
+
+@media (max-width: 1200px) {
+  .restock{
+    margin: 30px;
+  }
+
+  .content, .rounded-5{
+    width: 80vw;
+  }
+}
+
 </style>
 
 <script>
 import Chart from 'chart.js/auto';
 import { getInventory } from "/src/services/InventoryService";
 import { getZReport } from "/src/services/ReportService";
+import Footer from "/src/components/Manager/Footer.vue"
 
 export default {
   name: "Manager",
@@ -118,6 +137,9 @@ export default {
       RestockCount: 0,
       salesData: {},
     };
+  },
+  components: {
+    'manager-footer': Footer
   },
   mounted() {
 
@@ -153,18 +175,18 @@ export default {
 
       //loops through inventory and sets type for item
       for (let i = 0; i < count; i++) {
-        this.salesData[i].date = this.salesData[i].date.slice(0, -9)
+        this.salesData[i].date = this.salesData[i].date.slice(0, -23)
       }
 
       //update data here
       const data = [
-        { date: this.salesData[count-7].date, sales: this.salesData[count-7].sales },
-        { date: this.salesData[count-6].date, sales: this.salesData[count-6].sales },
-        { date: this.salesData[count-5].date, sales: this.salesData[count-5].sales },
-        { date: this.salesData[count-4].date, sales: this.salesData[count-4].sales },
-        { date: this.salesData[count-3].date, sales: this.salesData[count-3].sales },
-        { date: this.salesData[count-2].date, sales: this.salesData[count-2].sales },
-        { date: this.salesData[count-1].date, sales: this.salesData[count-1].sales },
+        { date: this.salesData[count - 7].date, sales: this.salesData[count - 7].sales },
+        { date: this.salesData[count - 6].date, sales: this.salesData[count - 6].sales },
+        { date: this.salesData[count - 5].date, sales: this.salesData[count - 5].sales },
+        { date: this.salesData[count - 4].date, sales: this.salesData[count - 4].sales },
+        { date: this.salesData[count - 3].date, sales: this.salesData[count - 3].sales },
+        { date: this.salesData[count - 2].date, sales: this.salesData[count - 2].sales },
+        { date: this.salesData[count - 1].date, sales: this.salesData[count - 1].sales },
       ];
 
       new Chart(

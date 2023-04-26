@@ -54,7 +54,7 @@
                     </div>
                     <div class="col-3">
                         <button type="button" @click='SubmitReport' class="btn btn-primary">
-                            View Report
+                            Generate
                         </button>
                     </div>
                 </div>
@@ -83,10 +83,12 @@
             </div>
         </div>
     </div>
+    <manager-footer></manager-footer>
 </template>
   
 <script>
 import { getExcessReport } from '/src/services/ReportService';
+import Footer from "/src/components/Manager/Footer.vue"
 
 export default {
 
@@ -103,7 +105,6 @@ export default {
                 getExcessReport(this.StartTime).then((response) => {
                     this.ExcessReport = response.data;
                     console.log(response.data);
-                    alert("Excess Report Retreived Successfully!")
                 }).catch((error) => {
                     alert("Error Retrieving Excess Report: " + error + "\nPlease Enter Time in This Format: YYYY-MM-DD")
                 });
@@ -113,12 +114,22 @@ export default {
             }
         },
     },
+    components: {
+      'manager-footer': Footer
+    },
     mounted() {
     },
 };
 </script>
   
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@500&display=swap');
+
+.background, h1, h5 {
+  font-family: 'Lato', sans-serif;
+  letter-spacing: 0.1px;
+}
+
 .container {
     text-align: center;
     max-width: 50%;
