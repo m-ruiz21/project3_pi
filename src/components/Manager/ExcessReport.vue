@@ -54,7 +54,7 @@
                     </div>
                     <div class="col-3">
                         <button type="button" @click='SubmitReport' class="btn btn-primary">
-                            View Report
+                            Generate
                         </button>
                     </div>
                 </div>
@@ -123,6 +123,13 @@ export default {
 </script>
   
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@500&display=swap');
+
+.background, h1, h5 {
+  font-family: 'Lato', sans-serif;
+  letter-spacing: 0.1px;
+}
+
 .container {
     text-align: center;
     max-width: 50%;

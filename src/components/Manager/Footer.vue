@@ -5,7 +5,7 @@
         <div class="text-center" style="background-color: rgba(0, 0, 0, 0.025); padding: 30px 0;">
             © 2023 Copyright:
             <a class="text-reset fw-bold" href="/">Pom & Honey</a>
-            <div class="d-flex flex-row-reverse" style="margin-top: -30px; margin-right: 20px;">
+            <div class="d-flex translate flex-row-reverse">
                 <div id="google_translate_element"></div>
             </div>
         </div>
@@ -23,3 +23,19 @@ export default {
     }
 };
 </script>
+
+<style>
+
+.translate{
+    margin-top: -30px; 
+    margin-right: 20px;
+}
+
+@media (max-width: 630px) {
+    .translate{
+    margin-top: 10px;
+    margin-right: 33vw;
+}
+}
+
+</style>

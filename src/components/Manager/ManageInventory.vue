@@ -189,6 +189,12 @@
 
 <style scoped>
 @import "/src/assets/table.css";
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@500&display=swap');
+
+.background, h1, h5 {
+  font-family: 'Lato', sans-serif;
+  letter-spacing: 0.1px;
+}
 
 .background {
   padding: 10px;

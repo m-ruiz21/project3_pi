@@ -140,6 +140,13 @@ export default {
 </script>
   
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@500&display=swap');
+
+.background, h1, h5 {
+  font-family: 'Lato', sans-serif;
+  letter-spacing: 0.1px;
+}
+
 .container {
     text-align: center;
     justify-content: center;
