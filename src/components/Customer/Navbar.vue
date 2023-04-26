@@ -42,9 +42,10 @@
   text-decoration: none;
   border: none;
   font-size: 25px;
-  font-weight: semi-bold;
-  padding-right: 100%;
   border-radius: 10px;
+  right: 20%;
+  position: fixed;
+  top: 25px;
 }
 
 .about-link:hover {
