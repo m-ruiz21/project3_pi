@@ -37,7 +37,7 @@
             </ul>
           </li>
         </ul>
-        <ul v-if="isAuthenticated" class="navbar-nav justify-content-end align-items-center" style="margin-right: 120px;">
+        <ul v-if="isAuthenticated" class="navbar-nav justify-content-end profile align-items-center" style="margin-right: 120px;">
           <div class="dropdown">
             <img class="rounded-circle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
               aria-expanded="false" :src="user.picture" height="40">
@@ -128,6 +128,10 @@ h5 {
   display: block;
 }
 
+img:hover {
+  filter: brightness(70%)
+}
+
 .content {
   height: 60vh;
 }
@@ -142,6 +146,15 @@ h5 {
     width: 80vw;
   }
 }
+
+@media (max-width: 990px) {
+  
+  .profile, h5{
+    margin: 0px 0px 0px 0px!important;
+  }
+
+}
+
 </style>
 
 <script>
