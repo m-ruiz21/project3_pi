@@ -226,7 +226,7 @@ h5 {
   padding: 0px 40px;
 }
 
-img:hover {
+.rounded-circle img:hover {
   filter: brightness(70%)
 }
 
