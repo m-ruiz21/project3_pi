@@ -128,7 +128,7 @@ h5 {
   display: block;
 }
 
-img:hover {
+.rounded-circle img:hover {
   filter: brightness(70%)
 }
 

@@ -206,7 +206,7 @@ h5 {
     height: 100vh;
 }
 
-img:hover {
+.rounded-circle img:hover {
   filter: brightness(70%)
 }
 
