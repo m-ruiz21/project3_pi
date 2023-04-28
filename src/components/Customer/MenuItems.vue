@@ -72,7 +72,7 @@ export default {
             },
             {
               name: "Hummus And Pita",
-              link: "side/hummus",
+              link: "side/pita",
               image: "src/assets/food/pitas.svg",
               description: "Delicious freshly made hummus with warm pita bread."
             },

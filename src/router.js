@@ -8,8 +8,9 @@ import Server from "./components/Server/Server.vue";
 import Pita from "./components/Customer/Pita.vue";
 import Bowl from "./components/Customer/Bowl.vue";
 import About from "./components/Customer/About.vue";
-import SidesandDrink from "./components/Customer/SidesandDrink.vue";
+import Sides from "./components/Customer/Sides.vue";
 import { isValidRoute } from "./services/ValidationService.js";
+import { isValidSideRoute } from "./services/ValidationService.js";
 import NotFound from "./components/Common/NotFound.vue";
 
 import { createRouter, createWebHistory } from "vue-router";
@@ -26,6 +27,7 @@ const routes = [
   { name: "Bowl", component: Bowl, path: "/bowl/:name", beforeEnter: isValidRoute},
   { name: "Pita", component: Pita, path: "/pita/:name", beforeEnter: isValidRoute},
   { name: "About", component: About, path: "/About"},
+  { name: "SidesandDrink", component: Sides, path: "/side/:name", beforeEnter: isValidSideRoute},
   { name: "Not Found", path: '/:catchAll(.*)', component: NotFound }
 ];
 

@@ -65,6 +65,10 @@ export default {
 </script>
 
 <style scoped>
+.navbar {
+  border-bottom: 2px solid #242B64;
+}
+
 h1 {
   text-align: center;
 }
