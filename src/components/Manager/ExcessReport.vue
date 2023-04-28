@@ -37,7 +37,7 @@
                         </ul>
                     </li>
                 </ul>
-                <ul v-if="isAuthenticated" class="navbar-nav justify-content-end align-items-center"
+                <ul v-if="isAuthenticated" class="navbar-nav profile justify-content-end align-items-center"
                     style="margin-right: 120px;">
                     <div class="dropdown">
                         <img class="rounded-circle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
@@ -190,6 +190,18 @@ h5 {
 
 .container {
     padding-bottom: 4%;
+}
+
+.rounded-circle img:hover {
+  filter: brightness(70%)
+}
+
+@media (max-width: 990px) {
+  
+  .profile, h5{
+    margin: 0px 0px 0px 0px!important;
+  }
+
 }
 </style>
   
