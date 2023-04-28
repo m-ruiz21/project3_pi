@@ -8,6 +8,27 @@ export default {
   data() {
     return { name: "Empty" };
   },
+  methods: {
+    isServer() {
+      const role = window.localStorage.getItem('role')
+      if ((role == 'server') || (role == 'manager')) {
+        return true;
+      }
+      return false;
+    },
+    isManager() {
+      const role = window.localStorage.getItem('role')
+      if (role == 'manager') {
+        return true;
+      }
+      return false;
+    }
+  },
+  beforeMount() {
+    if (!this.isServer()) {
+      window.location.href = '/';
+    }
+  },
 };
 </script>
 

@@ -16,8 +16,14 @@
           </li>
           <li v-else class="nav-item dropdown">
             <img class="rounded-circle profile-signin" style="margin-right: 20px; margin-top: 2px;" height="42" to="#"
-              role="button" data-bs-toggle="dropdown" aria-expanded="false" :src="user.picture">
+              role="button" data-bs-toggle="dropdown" aria-expanded="false" :src="user.picture" @click="getRoles">
             <ul class="dropdown-menu justify-content-center text-center">
+              <li v-if="currentRole == 'manager'">
+                <button class="btn" @click="goToPage('/manager')">Manager View</button>
+              </li>
+              <li v-if="currentRole == 'manager' || currentRole == 'server'">
+                <button class="btn" @click="goToPage('/server')">Server View</button>
+              </li>
               <li>
                 <button class="btn" @click="logout">Sign out</button>
               </li>
@@ -31,15 +37,18 @@
         </ul>
       </div>
     </div>
-    <cart :class="{ open: showSidebar }" @close="showSidebar = false" /> 
+    <cart :class="{ open: showSidebar }" @close="showSidebar = false" />
   </nav>
 </template>
 
 <script>
 import Cart from './Cart.vue';
+import axios from 'axios';
+import { getAccessToken } from '/src/services/Auth0Service.js'
+
 export default {
   components: {
-    'cart': Cart 
+    'cart': Cart
   },
   data() {
     return {
@@ -47,19 +56,64 @@ export default {
       user: this.$auth0.user,
       isAuthenticated: this.$auth0.isAuthenticated,
       isLoading: this.$auth0.isLoading,
+      currentRole: 'customer',
     };
   },
   methods: {
     login() {
       this.$auth0.loginWithRedirect();
     },
+
     logout() {
       this.$auth0.logout({
         logoutParams: {
           returnTo: window.location.origin
         }
       });
-    }
+    },
+
+    goToPage(pageName) {
+      window.location.href = pageName;
+    },
+
+    async getRoles() {
+
+      if (this.isAuthenticated) {
+
+        await getAccessToken().then((token) => {
+          var options = {
+            method: 'GET',
+            url: 'https://' + this.$auth0.clientOptions.domain + '/api/v2/users',
+            params: { q: 'email:"' + this.user.email + '"', search_engine: 'v3' },
+            headers: { authorization: 'Bearer ' + token }
+          };
+
+          axios.request(options).then((response) => {
+            if (response.data[0].user_metadata) {
+              //console.log(response.data[0].user_metadata.roles)
+              this.currentRole = response.data[0].user_metadata.roles
+              window.localStorage.setItem('role', (response.data[0].user_metadata.roles));
+            }
+            else {
+              //console.log('customer')
+              this.currentRole = 'customer'
+              window.localStorage.setItem('role', 'customer');
+            }
+
+          }).catch((error) => {
+            console.error(error);
+            alert("Error: " + error)
+          });
+        }
+        );
+      }
+      else {
+        console.log('customer')
+        this.currentRole = 'customer'
+        window.localStorage.setItem('role', 'customer');
+      }
+      console.log(this.currentRole)
+    },
   }
 };
 </script>

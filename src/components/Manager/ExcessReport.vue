@@ -1,9 +1,9 @@
 <template>
     <nav class="navbar sticky-top py-3 navbar-dark navbar-expand-lg" id="navbar" style="background-color: rgb(46, 56, 116)">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/manager">
+            <router-link class="navbar-brand" to="/">
                 <img src="/src/assets/p&hlogo.png" alt="Pom & Honey Logo" width="80" />
-            </a>
+            </router-link>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -141,7 +141,27 @@ export default {
                     returnTo: window.location.origin
                 }
             });
+        },
+        isServer() {
+            const role = window.localStorage.getItem('role')
+            if ((role == 'server') || (role == 'manager')) {
+                return true;
+            }
+            return false;
+        },
+        isManager() {
+            const role = window.localStorage.getItem('role')
+            if (role == 'manager') {
+                return true;
+            }
+            return false;
         }
+    },
+    beforeMount() {
+        if (!this.isManager()) {
+            window.location.href = '/';
+        }
+
     },
     components: {
         'manager-footer': Footer
@@ -152,8 +172,6 @@ export default {
 </script>
   
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@500&display=swap');
-
 .background,
 h1,
 h5 {
@@ -193,14 +211,15 @@ h5 {
 }
 
 .rounded-circle img:hover {
-  filter: brightness(70%)
+    filter: brightness(70%)
 }
 
 @media (max-width: 990px) {
-  
-  .profile, h5{
-    margin: 0px 0px 0px 0px!important;
-  }
+
+    .profile,
+    h5 {
+        margin: 0px 0px 0px 0px !important;
+    }
 
 }
 </style>
