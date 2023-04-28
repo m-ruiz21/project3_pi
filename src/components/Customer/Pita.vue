@@ -174,7 +174,7 @@ export default {
                     description: "Spicy Meatball in a warm pita with your choice of toppings and dressing."
                 };
             } else if (name === 'meatball') {
-                this.name = 'SPICY MEATBALL PITA';
+                this.name = 'Spicy Meatball Pita';
                 this.media = {
                     img: '/src/assets/food/meatball pita.svg',
                     alt: 'meatball bowl',

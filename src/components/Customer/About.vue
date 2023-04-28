@@ -5,16 +5,16 @@
     <!-- Add text here -->
     <div class="about-box">
     <img src="src/assets/aboutus.png">
-    <h2 class="text-left px-5">About Us</h2>
+    <h1 class="text-left mt-5 px-5">About Us</h1>
     </div>
-    <p class="text-left px-5">
-      Welcome to Pom and Honey, a Mediterranean grill located in the heart of the city. We are proud to be a part of the local A&M community serving fresh and healthy food inspired by the flavors of the Mediterranean.
+    <p class="text-left mt-3 px-5">
+      We are Pom and Honey, a Mediterranean grill located in the heart of our beloved aggie campus. We are proud to be a part of the local A&M community serving fresh and healthy food inspired by the flavors of the Mediterranean.
       Our menu features a variety of dishes, including meatballs, falafel, and chipotle-style dishes.
       At Pom and Honey, we are committed to providing our customers with exceptional service and a warm and welcoming atmosphere. 
       Whether you're dining in or taking out, we strive to make every visit a memorable one.
       Thank you for choosing Pom and Honey. We look forward to serving you soon!
     </p>
-    <h2 class="text-left px-5">Where We're Located</h2>
+    <h1 class="text-left px-5">Where To Find Us</h1>
     <div class = "gmap">
       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3433.7696670492605!2d-96.34386092491668!3d30.612259391445857!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864683592965a79f%3A0xf7a405b853c13270!2sPom%20%26%20Honey%20-%20MSC!5e0!3m2!1sen!2sus!4v1682390516523!5m2!1sen!2sus" 
       width="1000" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" ></iframe>
@@ -29,10 +29,10 @@
   </template> 
     
   <style scoped>
-    @import '../../assets/customer.css';
-    
-    h1 {
-      text-align: center;
+    @import '../../assets/customer.css';    
+
+    p {
+      font-size : 20px;
     }
 
     img{
