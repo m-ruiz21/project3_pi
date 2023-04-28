@@ -26,3 +26,6 @@ coverage
 *.njsproj
 *.sln
 *.sw?
+
+#JSON that stores Auth0 API information
+auth0.json

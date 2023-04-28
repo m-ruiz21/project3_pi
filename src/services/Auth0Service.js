@@ -1,11 +1,12 @@
 import axios from "axios";
+import auth0Info from '/src/auth0.json'
 
 
 export async function getAccessToken() {
     const data = {
-      client_id: 'LpuYMFqjt56iHU3vu36QSKKErHdT2K2W',
-      client_secret: '-s7h0eyt2LfOff9Q2WLpOkT5kmUlrhHN16Woqwn3JfxfxHXxKI0MajJ1G2Ct0SxN',
-      audience: 'https://dev-myn5wum5n16axxbc.us.auth0.com/api/v2/',
+      client_id: auth0Info.client_id,
+      client_secret: auth0Info.client_secret,
+      audience: auth0Info.audience,
       grant_type: 'client_credentials'
     };
 
