@@ -5,7 +5,7 @@ import SalesReport from "./components/Manager/SalesReport.vue";
 import ExcessReport from "./components/Manager/ExcessReport.vue";
 import Customer from "./components/Customer/Customer.vue";
 import Server from "./components/Server/Server.vue";
-import Gyro from "./components/Customer/Gyro.vue";
+import Pita from "./components/Customer/Pita.vue";
 import Bowl from "./components/Customer/Bowl.vue";
 import About from "./components/Customer/About.vue";
 import SidesandDrink from "./components/Customer/SidesandDrink.vue";
@@ -24,6 +24,7 @@ const routes = [
   { name: "Customer", component: Customer, path: "/" },
   { name: "NotFound", component: NotFound, path: "/not-found" },
   { name: "Bowl", component: Bowl, path: "/bowl/:name", beforeEnter: isValidRoute},
+  { name: "Pita", component: Pita, path: "/pita/:name", beforeEnter: isValidRoute},
   { name: "About", component: About, path: "/About"},
   { name: "Not Found", path: '/:catchAll(.*)', component: NotFound }
 ];

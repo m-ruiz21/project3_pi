@@ -25,9 +25,6 @@
 
     <!-- Order -->
     <div class="container" style="margin-top: 2%">
-
-        <!-- Base -->
-        <base-selector @update-base="updateBase"/>
         
         <!-- Protein  -->
         <protein-selector @update-extraMeat="updateExtraMeat"/>
@@ -82,7 +79,6 @@ export default {
             extra_dressing_price: 0,
             menuItems: {},
             extraMeat: false,
-            pilafOrdered: false,
             price: 0,
             orderedMenuItems: {
                 protein: `${this.$route.params.name}`,
@@ -126,18 +122,12 @@ export default {
             }
         },
         addToCart() {
-            var cartItemMenuItems = [];
+            var cartItemMenuItems = ["pita"];
             cartItemMenuItems.push(this.orderedMenuItems.protein);
             
             if (this.extraMeat) {
                 cartItemMenuItems.push("extra meat");
-            }
-            
-            if (this.pilafOrdered) {
-                cartItemMenuItems.push("rice pilaf");
-            } else {
-                cartItemMenuItems.push("brown rice");
-            }
+            } 
             
             for (var i = 0; i < this.orderedMenuItems.topping.length; i++) {
                 cartItemMenuItems.push(this.orderedMenuItems.topping[i]);
@@ -146,6 +136,8 @@ export default {
             for (var i = 0; i < this.orderedMenuItems.dressing.length; i++) {
                 cartItemMenuItems.push(this.orderedMenuItems.dressing[i]);
             }
+
+            console.log(cartItemMenuItems); 
 
             var cartItem = {
                 name: `${this.name}`,
@@ -175,22 +167,20 @@ export default {
         getMedia() {
             const name = this.$route.params.name;
             if (name === 'falafel') {
-                this.name = 'Falafel Bowl'
+                this.name = 'Falafel Pita'
                 this.media = {
-                    img: '/src/assets/food/falafel bowl.svg',
+                    img: '/src/assets/food/falafel pita.svg',
                     alt: 'falafel bowl',
-                    description: 'Fresh Falafel With Your Choice of Brown or Pilaf Rice, toppings, and dressing',
+                    description: "Spicy Meatball in a warm pita with your choice of toppings and dressing."
                 };
             } else if (name === 'meatball') {
-                this.name = 'Spicy Meatball Bowl';
+                this.name = 'SPICY MEATBALL PITA';
                 this.media = {
-                    img: '/src/assets/food/SpicyMeatball.svg',
+                    img: '/src/assets/food/meatball pita.svg',
                     alt: 'meatball bowl',
-                    description: 'Spicy Meatball With Your Choice of Brown or Pilaf Rice, toppings, and dressing.',
+                    description: "Fresh Falafel in a warm pita with your choice of toppings and dressing."
                 };
             }
-
-            console.log(this.media);
         }
     },
     mounted() {

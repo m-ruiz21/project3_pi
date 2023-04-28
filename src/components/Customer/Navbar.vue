@@ -6,13 +6,13 @@
       </a>
       <div class="justify-content-end">
         <ul class="navbar-nav">
-          <li class="nav-item" style="margin-right: 5vw;">
+          <li class="nav-item" style="margin-right: 10px;">
             <button class="btn-secondary about" style="color: rgb(46,56,116); width: fit-content;"
               onclick="location.href = '/about'">About Us</button>
           </li>
           <li v-if="!isAuthenticated" class="nav-item" style="margin-right: 10px;">
             <button class="btn profile" @click="login"><img class="rounded-circle" height="42"
-                src="/src/assets/user-icon.png"></button>
+                src="/src/assets/user-icon-2.png"></button>
           </li>
           <li v-else class="nav-item dropdown">
             <img class="rounded-circle profile-signin" style="margin-right: 20px; margin-top: 2px;" height="42" to="#"
@@ -24,16 +24,45 @@
             </ul>
           </li>
           <li class="nav-item cart-li">
-            <a class="cart" href="#">
+            <a class="cart position-relative" href="#" @click="showSidebar = true">
               <img src="../../assets/cart.svg" alt="Cart" height="30">
             </a>
           </li>
-
         </ul>
       </div>
     </div>
+    <cart :class="{ open: showSidebar }" @close="showSidebar = false" /> 
   </nav>
 </template>
+
+<script>
+import Cart from './Cart.vue';
+export default {
+  components: {
+    'cart': Cart 
+  },
+  data() {
+    return {
+      showSidebar: false,
+      user: this.$auth0.user,
+      isAuthenticated: this.$auth0.isAuthenticated,
+      isLoading: this.$auth0.isLoading,
+    };
+  },
+  methods: {
+    login() {
+      this.$auth0.loginWithRedirect();
+    },
+    logout() {
+      this.$auth0.logout({
+        logoutParams: {
+          returnTo: window.location.origin
+        }
+      });
+    }
+  }
+};
+</script>
 
 <style scoped>
 h1 {
@@ -84,7 +113,6 @@ h1 {
 }
 
 @media (max-width: 770px) {
-
   .about {
     margin-right: 120px;
   }
@@ -113,28 +141,3 @@ h1 {
 
 }
 </style>
-
-<script>
-
-export default {
-  data() {
-    return {
-      user: this.$auth0.user,
-      isAuthenticated: this.$auth0.isAuthenticated,
-      isLoading: this.$auth0.isLoading,
-    };
-  },
-  methods: {
-    login() {
-      this.$auth0.loginWithRedirect();
-    },
-    logout() {
-      this.$auth0.logout({
-        logoutParams: {
-          returnTo: window.location.origin
-        }
-      });
-    }
-  }
-};
-</script>
