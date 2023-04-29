@@ -27,5 +27,5 @@ coverage
 *.sln
 *.sw?
 
-#JSON that stores Auth0 API information
-auth0.json
+#JSON that stores API information
+api.json
