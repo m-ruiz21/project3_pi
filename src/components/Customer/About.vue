@@ -1,64 +1,90 @@
 <template>
-    <!-- nav bar -->
-    <navbar></navbar>
+  <!-- nav bar -->
+  <navbar></navbar>
 
-    <!-- Add text here -->
-    <div class="about-box">
-    <img src="src/assets/aboutus.png">
-    <h1 class="text-left mt-5 px-5">About Us</h1>
+  <!-- Add text here -->
+  <div class="about-box position-relative">
+  <img src="src/assets/aboutus.png" class="img-fluid">
+    <!-- <div class = "image_text">
+      <h1 class="text-white position-absolute top-50 start-25 text-white fw-bold me-10 margin-left: 50px" style="font-size: 7rem; margin-left: 50px;">About Us</h1>
+    </div> -->
+  </div>
+  <div class="row justify-content-center">
+  <div class="col-md-6 d-flex align-items-center">
+    <div class="about-text-box">
+      <p class="text-center mt-3 px-5">
+        We are Pom and Honey, a Mediterranean grill located in the heart of our beloved aggie campus. We are proud to be a
+        part of the local A&M community serving fresh and healthy food inspired by the flavors of the Mediterranean.
+        Our menu features a variety of dishes, including meatballs, falafel, and chipotle-style dishes.
+        At Pom and Honey, we are committed to providing our customers with exceptional service and a warm and welcoming
+        atmosphere.
+        Whether you're dining in or taking out, we strive to make every visit a memorable one.
+        Thank you for choosing Pom and Honey. We look forward to serving you soon!
+      </p>
     </div>
-    <p class="text-left mt-3 px-5">
-      We are Pom and Honey, a Mediterranean grill located in the heart of our beloved aggie campus. We are proud to be a part of the local A&M community serving fresh and healthy food inspired by the flavors of the Mediterranean.
-      Our menu features a variety of dishes, including meatballs, falafel, and chipotle-style dishes.
-      At Pom and Honey, we are committed to providing our customers with exceptional service and a warm and welcoming atmosphere. 
-      Whether you're dining in or taking out, we strive to make every visit a memorable one.
-      Thank you for choosing Pom and Honey. We look forward to serving you soon!
-    </p>
-    <h1 class="text-left px-5">Where To Find Us</h1>
-    <div class = "gmap">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3433.7696670492605!2d-96.34386092491668!3d30.612259391445857!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864683592965a79f%3A0xf7a405b853c13270!2sPom%20%26%20Honey%20-%20MSC!5e0!3m2!1sen!2sus!4v1682390516523!5m2!1sen!2sus" 
-      width="1000" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" ></iframe>
-    </div>
+    <!-- <div class="about-image-box">
+      <img src="src/assets/aboutus.png" class="img-fluid" style="width: 100% height: 100%;">
+    </div> -->
+  </div>
+</div>
+  <h1 class="text-center">Where To Find Us</h1>
+  <div class="gmap">
+    <iframe width="70%" height="450" style="border:0" loading="lazy" allowfullscreen
+      :src="maps_request"></iframe>
+  </div>
 
-  
-    <!-- footer -->
-    <customer-footer>
-    </customer-footer>
 
+  <!-- footer -->
+  <customer-footer></customer-footer>
+</template> 
     
-  </template> 
-    
-  <style scoped>
-    @import '../../assets/customer.css';    
+<style scoped>
+@import '../../assets/customer.css';
 
-    p {
-      font-size : 20px;
-    }
+p {
+  font-size: 20px;
+}
 
-    img{
-      display: grid;
-      place-items: center;
-      width: 100%;
-      height: 0%;
-      filter: grayscale(30%);
-      border: 1px solid;
-      border-color: black;
-    }
-    .gmap{
-      text-align: center;
-    }
+img {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 0%;
+  border: 1px solid;
+  border-color: black;
+}
 
-  </style>
+image-footer{
+ margin-left: 10% !important;
+}
+
+@media (max-width: 50%) {
+  .image_text {
+    font-size: 2.5rem !important;
+  }
+}
+
+.gmap {
+  text-align: center;
+}
+</style>
   
-  <script>
-  import Navbar from './Navbar.vue'
-  import Footer from './Footer.vue'
-  
-    export default {
-      name: "Customer",
-      components: {
-        'navbar': Navbar,
-        'customer-footer': Footer
-      },
+<script>
+import Navbar from './Navbar.vue'
+import Footer from './Footer.vue'
+import api from '/src/api.json'
+
+export default {
+  name: "Customer",
+  data() {
+    return {
+      maps_request: "https://www.google.com/maps/embed/v1/place?q=place_id:ChIJn6dlKVmDRoYRcDLBU7gFpPc&key=" + api.maps_api,
+      // https://www.google.com/maps/embed/v1/directions?origin=place_id:ChIJNa-oJpSDRoYRAFNJpQd0jIA&destination=Pom%20%26%20Honey%20-%20MSC%2C%20Joe%20Routt%20Tamu%20Blvd%2C%20College%20Station%2C%20TX%2C%20USA&key=
     };
-  </script>
+  },
+  components: {
+    'navbar': Navbar,
+    'customer-footer': Footer
+  },
+};
+</script>
