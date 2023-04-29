@@ -205,13 +205,10 @@ export default {
       return false;
     },
   },
-  beforeMount() {
-    if (!this.isManager()) {
-      window.location.href = '/';
-    }
-  },
   mounted() {
-
+    if (!this.isManager()) {
+      window.location.href = '/access-denied';
+    }
     getInventory().then((response) => {
       this.Inventory = response.data;
 

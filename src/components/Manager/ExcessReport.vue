@@ -159,7 +159,7 @@ export default {
     },
     beforeMount() {
         if (!this.isManager()) {
-            window.location.href = '/';
+            window.location.href = '/access-denied';
         }
 
     },

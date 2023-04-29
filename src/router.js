@@ -12,6 +12,7 @@ import Sides from "./components/Customer/Sides.vue";
 import { isValidRoute } from "./services/ValidationService.js";
 import { isValidSideRoute } from "./services/ValidationService.js";
 import NotFound from "./components/Common/NotFound.vue";
+import AccessDenied from "./components/Common/AccessDenied.vue";
 
 import { createRouter, createWebHistory } from "vue-router";
 
@@ -28,6 +29,7 @@ const routes = [
   { name: "Pita", component: Pita, path: "/pita/:name", beforeEnter: isValidRoute},
   { name: "About", component: About, path: "/About"},
   { name: "SidesandDrink", component: Sides, path: "/side/:name", beforeEnter: isValidSideRoute},
+  { name: "Access Denied", component: AccessDenied , path: "/access-denied" },
   { name: "Not Found", path: '/:catchAll(.*)', component: NotFound }
 ];
 

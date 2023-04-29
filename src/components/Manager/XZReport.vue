@@ -175,11 +175,8 @@ export default {
     beforeMount() {
         if (this.isAuthenticated) {
             if (!this.isManager()) {
-                window.location.href = '/';
+                window.location.href = '/access-denied';
             }
-        }
-        else {
-            window.location.href = '/';
         }
     },
     mounted() {

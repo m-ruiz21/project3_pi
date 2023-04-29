@@ -124,8 +124,9 @@ export default {
 
 <style scoped>
 .container {
-    height: 100%; 
+    height: 100%;
 }
+
 .btn-secondary {
     width: 40%;
     background-color: white;
@@ -139,19 +140,20 @@ export default {
 }
 
 .btn-secondary:hover {
-  background-color: rgb(218, 218, 218);
+    background-color: rgb(218, 218, 218);
 }
 
-.sidebar {
-  width: 25vw;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  right: -25vw;
-  z-index: 9999;
-  background-color: #fff;
-  transition: all 0.3s ease-in-out;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+.sidebar { 
+    width: 25vw;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    right: -25vw;
+    z-index: 9999;
+    background-color: #fff;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    overflow: auto;
 }
 
 .sidebar.open {
