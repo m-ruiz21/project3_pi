@@ -2,11 +2,11 @@
     <navbar/>
 
     <!-- banner -->
-    <div class="flex-grow-1 d-flex align-items-center overflow-auto">
+    <div class="flex-grow-1 d-flex space-between align-items-center">
       <div class="container-fluid">
         <div class="row h-100">
           <div class="col-md-6 d-flex align-items-center justify-content-center">
-            <img :src="media.img" class="img-fluid w-auto h-100" style="background-color: #F1F1EB;" :alt="media.alt">
+            <img :src="media.img" class="img-fluid w-100 h-auto" style="background-color: #F1F1EB;" :alt="media.alt">
           </div>
           <div class="col-md-6 d-flex align-items-start justify-content-start banner-content ml-5">
             <div>
@@ -139,21 +139,8 @@ export default {
     margin-right: 10%;
 }
 
-.banner-image {
-    margin-right: 10%;
-    height: 100%;
-    background-color: #F1F1EB;
-}
-
-.banner-image img {
-    width: 100%;
-    height: auto;
-}
-
 footer {
     margin-top: 0;
-    position: absolute;
-    bottom: 0;
     width: 100%;
     background-color: #242B64;
 }
