@@ -107,7 +107,7 @@
                             </thead>
                             <tbody>
                                 <tr v-for="item in SalesReport">
-                                    <td>{{ item.date }}</td>
+                                    <td>{{ item.date.split('T')[0] }}</td>
                                     <td>{{ item.sold }}</td>
                                 </tr>
                             </tbody>
@@ -152,17 +152,6 @@ export default {
                 getSalesReport(this.SelectedItem, this.StartTime, this.EndTime).then((response) => {
                     this.SalesReport = response.data;
                     console.log(response.data);
-
-                    //counts the size of the z report
-                    var salesCount = 0;
-                    for (var i in this.SalesReport) {
-                        if (this.SalesReport.hasOwnProperty(i)) salesCount++;
-                    }
-
-                    //loops through inventory and sets type for item
-                    for (let i = 0; i < salesCount; i++) {
-                        this.SalesReport[i].date = this.SalesReport[i].date.slice(0, -9)
-                    }
 
                 }).catch((error) => {
                     alert("Error Retrieving Sales Report: " + error + "\nPlease Enter Time in This Format: YYYY-MM-DD")

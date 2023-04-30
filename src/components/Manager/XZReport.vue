@@ -92,7 +92,7 @@
                         </thead>
                         <tbody>
                             <tr v-for="item in ZReport">
-                                <td>{{ item.date }}</td>
+                                <td>{{ item.date.split('T')[0] }}</td>
                                 <td> {{ item.sales }}</td>
                             </tr>
                         </tbody>
@@ -136,17 +136,6 @@ export default {
             getZReport().then((response) => {
                 this.ZReport = response.data;
                 console.log(response.data);
-
-                //counts the size of the z report
-                var zCount = 0;
-                for (var i in this.ZReport) {
-                    if (this.ZReport.hasOwnProperty(i)) zCount++;
-                }
-
-                //loops through inventory and sets type for item
-                for (let i = 0; i < zCount; i++) {
-                    this.ZReport[i].date = this.ZReport[i].date.slice(0, -23)
-                }
 
             }).catch((error) => {
                 alert("Error Retrieving Z Report: " + error)

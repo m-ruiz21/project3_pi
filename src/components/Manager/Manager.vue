@@ -248,20 +248,15 @@ export default {
         if (this.salesData.hasOwnProperty(i)) count++;
       }
 
-      //loops through inventory and sets type for item
-      for (let i = 0; i < count; i++) {
-        this.salesData[i].date = this.salesData[i].date.slice(0, -23)
-      }
-
       //update data here
       const data = [
-        { date: this.salesData[count - 7].date, sales: this.salesData[count - 7].sales },
-        { date: this.salesData[count - 6].date, sales: this.salesData[count - 6].sales },
-        { date: this.salesData[count - 5].date, sales: this.salesData[count - 5].sales },
-        { date: this.salesData[count - 4].date, sales: this.salesData[count - 4].sales },
-        { date: this.salesData[count - 3].date, sales: this.salesData[count - 3].sales },
-        { date: this.salesData[count - 2].date, sales: this.salesData[count - 2].sales },
-        { date: this.salesData[count - 1].date, sales: this.salesData[count - 1].sales },
+        { date: this.salesData[count - 7].date.split('T')[0], sales: this.salesData[count - 7].sales },
+        { date: this.salesData[count - 6].date.split('T')[0], sales: this.salesData[count - 6].sales },
+        { date: this.salesData[count - 5].date.split('T')[0], sales: this.salesData[count - 5].sales },
+        { date: this.salesData[count - 4].date.split('T')[0], sales: this.salesData[count - 4].sales },
+        { date: this.salesData[count - 3].date.split('T')[0], sales: this.salesData[count - 3].sales },
+        { date: this.salesData[count - 2].date.split('T')[0], sales: this.salesData[count - 2].sales },
+        { date: this.salesData[count - 1].date.split('T')[0], sales: this.salesData[count - 1].sales },
       ];
 
       new Chart(
@@ -272,7 +267,7 @@ export default {
             labels: data.map(row => row.date),
             datasets: [
               {
-                label: 'Last 7 Open Days in Sales',
+                label: 'Last 7 Days in Sales',
                 data: data.map(row => row.sales),
                 borderColor: 'rgb(46,56,116)'
               }
