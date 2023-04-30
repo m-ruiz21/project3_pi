@@ -35,13 +35,6 @@
       :src="maps_request"></iframe>
   </div>
 
-  <div>
-
-    <div class="text-center mt-5">
-      <h2 class="mb-3">Distance from current location:</h2>
-      <p class="lead">{{ distance }}</p>
-    </div>
-  </div>
 
 
   <!-- footer -->
