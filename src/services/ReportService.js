@@ -32,3 +32,17 @@ export async function getZReport() {
   console.log(response.data);
   return response;
 }
+
+export async function getOrders(pageNumber) {
+  const response = await axios.get(
+    "https://pomandhoneyapi.azurewebsites.net/orders",
+    {
+      params: {
+        "pageNumber": pageNumber,
+        "pageSize": 50,
+      },
+    }
+  );
+  console.log(response.data);
+  return response;
+}

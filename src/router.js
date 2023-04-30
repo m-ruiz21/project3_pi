@@ -9,6 +9,7 @@ import Pita from "./components/Customer/Pita.vue";
 import Bowl from "./components/Customer/Bowl.vue";
 import About from "./components/Customer/About.vue";
 import Sides from "./components/Customer/Sides.vue";
+import Orders from '/src/components/Server/ServerOrders.vue'
 import { isValidRoute } from "./services/ValidationService.js";
 import { isValidSideRoute } from "./services/ValidationService.js";
 import NotFound from "./components/Common/NotFound.vue";
@@ -23,6 +24,7 @@ const routes = [
   { name: "SalesReport", component: SalesReport, path: "/manager/sales" },
   { name: "ExcessReport", component: ExcessReport, path: "/manager/excess" },
   { name: "Server", component: Server, path: "/server" },
+  { name: "Orders", component: Orders, path: "/server/orders" },
   { name: "Customer", component: Customer, path: "/" },
   { name: "NotFound", component: NotFound, path: "/not-found" },
   { name: "Bowl", component: Bowl, path: "/bowl/:name", beforeEnter: isValidRoute},

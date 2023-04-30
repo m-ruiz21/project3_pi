@@ -11,7 +11,7 @@
       <div class="collapse navbar-collapse text-white" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <router-link class="nav-link active" aria-current="page" to="/manager">Place Orders</router-link>
+            <router-link class="nav-link active" aria-current="page" to="/server">Place Orders</router-link>
           </li>
           <li class="nav-item">
             <router-link class="nav-link" to="/server/orders">View Orders</router-link>
