@@ -17,7 +17,7 @@
                         <router-link class="nav-link" to="/manager/inventory">Manage Inventory</router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link class="nav-link" to="/server">Place Orders</router-link>
+                        <router-link class="nav-link" to="/server">Orders</router-link>
                     </li>
                     <li class="nav-item dropdown">
                         <router-link class="nav-link dropdown-toggle active" to="#" role="button" data-bs-toggle="dropdown"
@@ -43,6 +43,12 @@
                         <img class="rounded-circle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
                             aria-expanded="false" :src="user.picture" height="40">
                         <ul class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton1">
+                            <li>
+                                <button class="btn" @click="goToPage('/manager')">Manager View</button>
+                            </li>
+                            <li>
+                                <button class="btn" @click="goToPage('/server')">Server View</button>
+                            </li>
                             <li>
                                 <button class="btn" @click="logout">Sign out</button>
                             </li>
@@ -187,7 +193,10 @@ export default {
                 return true;
             }
             return false;
-        }
+        },
+        goToPage(pageName) {
+            window.location.href = pageName;
+        },
     },
     beforeMount() {
         if (!this.isManager()) {

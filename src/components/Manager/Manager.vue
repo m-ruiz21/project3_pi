@@ -17,7 +17,7 @@
             <router-link class="nav-link" to="/manager/inventory">Manage Inventory</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/server">Place Orders</router-link>
+            <router-link class="nav-link" to="/server">Orders</router-link>
           </li>
           <li class="nav-item dropdown">
             <router-link class="nav-link dropdown-toggle" to="#" role="button" data-bs-toggle="dropdown"
@@ -44,6 +44,12 @@
               aria-expanded="false" :src="user.picture" height="40">
             <ul class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton1">
               <li>
+                <button class="btn" @click="goToPage('/manager')">Manager View</button>
+              </li>
+              <li>
+                <button class="btn" @click="goToPage('/server')">Server View</button>
+              </li>
+              <li>
                 <button class="btn" @click="logout">Sign out</button>
               </li>
             </ul>
@@ -57,7 +63,7 @@
     <div class="container">
       <div class="row">
         <div v-if="isAuthenticated"
-          class="col-md-11 py-4 rounded-5 container d-flex align-items-center justify-content-center bg-white"
+          class="col-md-11 py-4 rounded-4 container d-flex align-items-center justify-content-center bg-white"
           style="margin-top: 45px">
           <h1 style="margin-left: 15px">Welcome, {{ user.given_name }}!</h1>
         </div>
@@ -203,6 +209,9 @@ export default {
         return true;
       }
       return false;
+    },
+    goToPage(pageName) {
+      window.location.href = pageName;
     },
   },
   mounted() {
