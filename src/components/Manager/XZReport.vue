@@ -99,8 +99,11 @@
                     </table>
                     <h2 class="mt-4" v-else style="font-weight: normal;">Please Press Generate</h2>
                 </div>
-                <button @click='GenerateZReport' class="btn mt-4 mb-5 btn-primary">
+                <button v-if="!ZReport.length" @click='GenerateZReport' class="btn mt-4 mb-5 btn-primary">
                     Generate
+                </button>
+                <button v-else @click='ZReportLoadMore' class="btn mt-4 mb-5 btn-primary">
+                    Load More
                 </button>
             </div>
         </div>
@@ -110,7 +113,7 @@
   
 <script>
 
-import { getXReport, getZReport } from '/src/services/ReportService';
+import { getXReport, getZReportWithSize } from '/src/services/ReportService';
 import Footer from "/src/components/Manager/Footer.vue"
 
 
@@ -119,6 +122,7 @@ export default {
     data() {
         return {
             name: "Empty",
+            pageSize: 50,
             XReport: {},
             ZReport: {},
             user: this.$auth0.user,
@@ -133,7 +137,18 @@ export default {
 
     methods: {
         GenerateZReport() {
-            getZReport().then((response) => {
+            getZReportWithSize(this.pageSize).then((response) => {
+                this.ZReport = response.data;
+                console.log(response.data);
+
+            }).catch((error) => {
+                alert("Error Retrieving Z Report: " + error)
+            });
+        },
+
+        ZReportLoadMore(){
+            this.pageSize += 50
+            getZReportWithSize(this.pageSize).then((response) => {
                 this.ZReport = response.data;
                 console.log(response.data);
 
