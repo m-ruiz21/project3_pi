@@ -104,9 +104,10 @@ export default {
                 .then(() => {
                     this.showSuccessSubmit = true; 
                     setTimeout(() => {
+                        console.log(menuItems);
                         this.showSuccessSubmit = false;
                         this.cartItems = [];
-                        localStorage.setItem('cart', klSON.stringify(this.cartItems));
+                        localStorage.setItem('cart', JSON.stringify(this.cartItems));
                         this.updateTotal();
                     }, 2000);
                 })

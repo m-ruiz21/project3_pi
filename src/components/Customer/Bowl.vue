@@ -147,6 +147,10 @@ export default {
                 cartItemMenuItems.push(this.orderedMenuItems.dressing[i]);
             }
 
+            for (var i = 1; i < this.orderedMenuItems.dressing.length; i++) {
+                cartItemMenuItems.push("extra dressing");
+            }
+
             var cartItem = {
                 name: `${this.name}`,
                 price: this.price,
@@ -189,8 +193,6 @@ export default {
                     description: 'Spicy Meatball With Your Choice of Brown or Pilaf Rice, toppings, and dressing.',
                 };
             }
-
-            console.log(this.media);
         }
     },
     mounted() {
