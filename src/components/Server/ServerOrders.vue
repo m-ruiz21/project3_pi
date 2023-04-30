@@ -27,6 +27,9 @@
                                 <button class="btn" @click="goToPage('/manager')">Manager View</button>
                             </li>
                             <li>
+                                <button class="btn" @click="goToPage('/server')">Server View</button>
+                            </li>
+                            <li>
                                 <button class="btn" @click="logout">Sign out</button>
                             </li>
                         </ul>
@@ -105,6 +108,16 @@ export default {
         'manager-footer': Footer,
     },
     methods: {
+        login() {
+            this.$auth0.loginWithRedirect();
+        },
+        logout() {
+            this.$auth0.logout({
+                logoutParams: {
+                    returnTo: window.location.origin
+                }
+            });
+        },
         isServer() {
             const role = window.localStorage.getItem('role')
             if ((role == 'server') || (role == 'manager')) {
