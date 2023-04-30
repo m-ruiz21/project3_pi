@@ -120,7 +120,7 @@
                   <option>Topping</option>
                   <option>Drink</option>
                   <option>Dressing</option>
-                  <option>Side</option>
+                  <option>Menu Item</option>
                   <option>Extra</option>
                   <option>Cutlery</option>
                 </select>
