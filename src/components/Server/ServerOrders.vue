@@ -76,7 +76,7 @@
                                     <td>{{ order.dateTime.split('T')[0] }}</td>
                                     <td>{{ order.dateTime.split('T')[1] }}</td>
                                     <td>{{ order.Items }}</td>
-                                    <td>{{ order.price }}</td>
+                                    <td>${{ order.price.toFixed(2) }}</td>
                                 </tr>
                             </tbody>
                         </table>

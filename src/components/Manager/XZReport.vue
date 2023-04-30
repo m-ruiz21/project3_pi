@@ -72,7 +72,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>${{ XReport.sales }}</td>
+                                <td v-if="XReport.sales">${{ XReport.sales.toFixed(2) }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -93,11 +93,11 @@
                         <tbody>
                             <tr v-for="item in ZReport">
                                 <td>{{ item.date.split('T')[0] }}</td>
-                                <td> {{ item.sales }}</td>
+                                <td> ${{ item.sales.toFixed(2) }}</td>
                             </tr>
                         </tbody>
                     </table>
-                    <h2 class="mt-4" v-else style="font-weight: normal;">Please Press Generate</h2>
+                    <h2 class="mt-5 text-muted" v-else style="font-weight: normal;">Please Press Generate</h2>
                 </div>
                 <button v-if="!ZReport.length" @click='GenerateZReport' class="btn mt-4 mb-5 btn-primary">
                     Generate
