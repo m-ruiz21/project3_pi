@@ -12,7 +12,7 @@
                 v-for="(item, index) in cartItems"
                 :key="index"
                 :item="item"
-                @remove="deleteItem"
+                @remove="deleteItem(index)"
             />
             </div>
         </div>
@@ -106,7 +106,7 @@ export default {
                     setTimeout(() => {
                         this.showSuccessSubmit = false;
                         this.cartItems = [];
-                        localStorage.setItem('cart', JSON.stringify(this.cartItems));
+                        localStorage.setItem('cart', klSON.stringify(this.cartItems));
                         this.updateTotal();
                     }, 2000);
                 })
@@ -153,7 +153,6 @@ export default {
     background-color: #fff;
     transition: all 0.3s ease-in-out;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    overflow: auto;
 }
 
 .sidebar.open {
