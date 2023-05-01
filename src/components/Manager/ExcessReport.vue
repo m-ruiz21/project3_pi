@@ -207,7 +207,7 @@ h5 {
 
 .background {
     padding-top: 10px;
-    background-color: lightgray;
+    background-color: rgb(237, 239, 240);
     height: 100vh;
 }
 

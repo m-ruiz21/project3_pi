@@ -232,7 +232,7 @@ h5 {
 }
 
 .background {
-    background-color: lightgray;
+    background-color: rgb(237, 239, 240);
     padding-top: 10px;
     margin-right: 0px;
     height: 100vh;
