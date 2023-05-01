@@ -75,7 +75,20 @@
                                 <tr v-for="order in orders">
                                     <td>{{ order.dateTime.split('T')[0] }}</td>
                                     <td>{{ order.dateTime.split('T')[1] }}</td>
-                                    <td>{{ order.Items }}</td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button @click="getItems(order.id)" class="btn btn-secondary dropdown-toggle"
+                                                href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                View Items
+                                            </button>
+                                            <ul v-if="orderItems" class="dropdown-menu">
+                                                <li v-for="items in orderItems.items">
+                                                    <a v-if="items"
+                                                        class="dropdown-item disabled text-dark" href="#">{{ items }}</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
                                     <td>${{ order.price.toFixed(2) }}</td>
                                 </tr>
                             </tbody>
@@ -90,7 +103,7 @@
   
 <script>
 import Footer from "/src/components/Manager/Footer.vue"
-import { getOrders } from '/src/services/ReportService.js'
+import { getOrders, getOrderByID } from '/src/services/ReportService.js'
 
 export default {
     name: "Orders",
@@ -101,6 +114,7 @@ export default {
             isLoading: this.$auth0.isLoading,
             currentRole: 'server',
             orders: {},
+            orderItems: {},
             pageNumber: 1,
         };
     },
@@ -156,6 +170,15 @@ export default {
                 console.log(response.data);
             }).catch((error) => {
                 alert("Error Retrieving Orders: " + error)
+            });
+        },
+        getItems(id) {
+
+            getOrderByID(id).then((response) => {
+                this.orderItems = response.data;
+                console.log(response.data);
+            }).catch((error) => {
+                alert("Error Retrieving Items: " + error)
             });
         },
     },

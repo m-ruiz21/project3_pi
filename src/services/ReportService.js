@@ -57,3 +57,10 @@ export async function getOrders(pageNumber) {
   console.log(response.data);
   return response;
 }
+
+export async function getOrderByID(id) {
+  const response = await axios.get(
+    "https://pomandhoneyapi.azurewebsites.net/orders/" + id);
+  console.log(response.data);
+  return response;
+}
