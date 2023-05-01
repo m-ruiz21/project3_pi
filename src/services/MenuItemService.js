@@ -17,3 +17,14 @@ export async function getMenuItemByName(name) {
       throw error;
   }
 }
+
+export async function updateMenuItem(menuItem) {
+  try {
+    const response = await axios.put(API_ENDPOINT, menuItem);
+    return response;
+  } catch (error) {
+      console.error(`Error: ${error}`);
+      console.log(error.response);
+      throw error;
+  }
+}

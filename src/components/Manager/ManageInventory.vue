@@ -66,26 +66,39 @@
         <div class="col">
           <h1 class="mt-5 mb-4">Current Inventory</h1>
           <div class="table-wrapper-scroll-y my-custom-scrollbar mb-5">
-            <table v-if="Inventory && Inventory.length" class="table">
-              <thead>
-                <tr>
-                  <th scope="col">Name</th>
-                  <th scope="col">Category</th>
-                  <th scope="col">Quantity</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="item in Inventory">
-                  <td>{{ item.name }}</td>
-                  <td>{{ item.type }}</td>
-                  <td>{{ item.quantity }}</td>
-                </tr>
-              </tbody>
-            </table>
+          <table v-if="Inventory && Inventory.length" class="table">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Type</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Actions</th> 
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="item in Inventory" :key="item.id">
+                <td>{{ item.name }}</td>
+                <td>{{ item.type }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>
+                  <div class="dropright">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16" data-bs-toggle="dropdown" data-bs-target="#actionsDropdown{{item.id}}" aria-expanded="false">
+                      <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                    </svg>
+                    <ul class="dropdown-menu" aria-labelledby="actionsDropdown{{item.id}}">
+                      <li v-if="item.type=='menu item'"><a class="dropdown-item" href="#" @click.prevent="showEditModal(item)">Edit</a></li>
+                      <li><a class="dropdown-item" href="#" @click.prevent="showRestockModal(item)">Restock</a></li>
+                      <li><a class="dropdown-item text-danger" href="#" @click.prevent="deleteItem(item)">Delete</a></li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
           </div>
         </div>
       </div>
-    </div>
+    </div> 
     <div class="container align-items-center mt-4 mb-3 justify-content-center rounded bg-white">
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item mt-4" role="presentation">
@@ -94,22 +107,9 @@
             Add Item
           </button>
         </li>
-        <li class="nav-item mt-4" role="presentation">
-          <button class="nav-link" id="edit-tab" data-bs-toggle="tab" data-bs-target="#edit" type="button" role="tab"
-            aria-controls="edit" aria-selected="false">
-            Edit Item
-          </button>
-        </li>
-        <li class="nav-item mt-4" role="presentation">
-          <button class="nav-link" id="remove-tab" data-bs-toggle="tab" data-bs-target="#remove" type="button" role="tab"
-            aria-controls="remove" aria-selected="false">
-            Remove Item
-          </button>
-        </li>
       </ul>
       <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active mt-5" id="add" role="tabpanel" aria-labelledby="add-tab">
-          <!-- <h5>Category: {{ SelectedAddCategory }}, Name: {{ AddItemName }}, #: {{ AddItemQuantity }}, Price: {{ AddItemPrice }}</h5> -->
           <form>
             <div class="row">
               <div class="col">
@@ -155,58 +155,23 @@
             </button>
           </form>
         </div>
-        <div class="tab-pane fade mt-5" id="edit" role="tabpanel" aria-labelledby="edit-tab">
-          <!-- <h5>Item: {{ SelectedEditItem }}, Attribute: {{ SelectedEditAttribute }}, Name: {{ EditItemName }}</h5> -->
-          <form>
-            <div class="row">
-              <div class="col">
-                <select class="form-select" v-model="SelectedEditItem">
-                  <option value="">Select Item</option>
-                  <option v-for="item in Inventory">
-                    {{ item.name }}
-                  </option>
-                </select>
-              </div>
-              <div class="col">
-                <select class="form-select" v-model="SelectedEditAttribute">
-                  <option value="">Select Attribute</option>
-                  <option>Category</option>
-                  <option>Price</option>
-                  <option>Quantity</option>
-                </select>
-              </div>
-              <div class="col">
-                <div class="form-group">
-                  <input v-model="EditItemValue" type="text" for="item-name-add" class="form-control" id="item-name-add"
-                    placeholder="Enter New Value" />
-                </div>
-              </div>
-            </div>
-            <button type="button" @click="EditItem" class="btn mt-5 mb-5 btn-primary">
-              Edit Item
-            </button>
-          </form>
-        </div>
-        <div class="tab-pane fade mt-5" id="remove" role="tabpanel" aria-labelledby="remove-tab">
-          <!-- <h5>Item: {{ SelectedRemoveItem }}</h5> -->
-          <form>
-            <div class="row">
-              <div class="col">
-                <select v-model="SelectedRemoveItem" class="form-select">
-                  <option value="">Select Item</option>
-                  <option v-for="item in Inventory">{{ item.name }}</option>
-                </select>
-              </div>
-            </div>
-            <button type="button" @click='RemoveItem' class="btn mt-5 mb-5 btn-primary">
-              Remove Item
-            </button>
-          </form>
-        </div>
       </div>
     </div>
   </div>
   <manager-footer></manager-footer>
+
+  <restock-popup
+    :item="selectedItem"
+    :show-modal="showRestockPopupModal"
+    :on-hide="() => { showRestockPopupModal = false }"
+    :on-restock="restockItem"
+  />
+
+  <edit-popup
+    :item="selectedItem"
+    :show-modal="showEditPopupModal"
+    :on-hide="() => { showEditPopupModal = false }"
+  />
 </template>
 
 <style scoped>
@@ -249,6 +214,8 @@ h5 {
 <script>
 import { getInventory, InventoryAdd, InventoryRemove, InventoryEdit } from "/src/services/InventoryService";
 import Footer from "/src/components/Manager/Footer.vue"
+import RestockPopup from "/src/components/Manager/Restock.vue"
+import EditPopup from "/src/components/Manager/Edit.vue"
 
 export default {
   name: "Inventory",
@@ -267,10 +234,15 @@ export default {
       user: this.$auth0.user,
       isAuthenticated: this.$auth0.isAuthenticated,
       isLoading: this.$auth0.isLoading,
+      selectedItem: {name:'', quantity:0, category:''},
+      showRestockPopupModal: false,
+      showEditPopupModal: false,
     };
   },
   components: {
-    'manager-footer': Footer
+    'manager-footer': Footer,
+    'restock-popup': RestockPopup,
+    'edit-popup': EditPopup
   },
   methods: {
     AddItem() {
@@ -290,83 +262,19 @@ export default {
       }
 
     },
-
-    EditItem() {
-      if (!this.SelectedEditAttribute || !this.SelectedEditItem || !this.EditItemValue) {
-        alert("Invalid Input. Please Reenter Values")
-      }
-      else {
-
-        //counts the size of the inventory
-        var inventoryCount = 0;
-        for (var i in this.Inventory) {
-          if (this.Inventory.hasOwnProperty(i)) inventoryCount++;
-        }
-
-        //stores item in dictionary
-        var item = {}
-
-        //loops through inventory and sets information for item
-        for (let i = 0; i < inventoryCount; i++) {
-          if (this.Inventory[i].name == this.SelectedEditItem) {
-            item = this.Inventory[i]
-          }
-        }
-
-        console.log(item)
-
-        InventoryEdit(this.SelectedEditItem, this.SelectedEditAttribute, this.EditItemValue, item).then((response) => {
-          this.returnData = response.data;
-          console.log(response.data)
-          alert("Item Edited: " + this.SelectedEditItem)
-          window.location.reload()
-        }).catch((error) => {
-          if (!(error instanceof TypeError)) {
-            alert("Error Editing Item: " + error)
-            window.location.reload()
-          }
-          console.log(error)
-        });
-      }
+    deleteItem(item)
+    {
+      console.log(item)
+      InventoryRemove(item.name, item.type).then((response) => {
+        this.returnData = response.data;
+        alert("Item Removed: " + item.name)
+        window.location.reload()
+        console.log(response.data);
+      }).catch((error) => {
+        alert("Error Removing Item: " + error)
+        window.location.reload()
+      });
     },
-
-    RemoveItem() {
-      if (this.SelectedRemoveItem) {
-
-        //counts the size of the inventory
-        var inventoryCount = 0;
-        for (var i in this.Inventory) {
-          if (this.Inventory.hasOwnProperty(i)) inventoryCount++;
-        }
-
-        //sets type
-        var type = 'menu-item'
-
-        //loops through inventory and sets type for item
-        for (let i = 0; i < inventoryCount; i++) {
-          if (this.Inventory[i].name == this.SelectedRemoveItem) {
-            if (this.Inventory[i].type == 'cutlery') {
-              type = 'cutlery'
-            }
-          }
-        }
-
-        //calls Inventory Remove with name and type
-        InventoryRemove(this.SelectedRemoveItem, type).then((response) => {
-          this.returnData = response.data;
-          alert("Item Removed: " + this.SelectedRemoveItem)
-          window.location.reload()
-          console.log(response.data);
-        }).catch((error) => {
-          alert("Error Removing Item: " + error)
-          window.location.reload()
-        });
-      }
-      else {
-        alert("No Item Selected. Please Select an Item")
-      }
-    },
-
     login() {
       this.$auth0.loginWithRedirect();
     },
@@ -376,9 +284,30 @@ export default {
           returnTo: window.location.origin
         }
       });
-    }
-
-    ,
+    },
+    showRestockModal(item) {
+      this.selectedItem = item;
+      this.showRestockPopupModal = true;
+    },
+    restockItem(item, value) {
+      InventoryEdit(item.name, 'Quantity', item.quantity + value, item).then((response) => {
+          this.returnData = response.data;
+          console.log(response.data)
+          alert("Item Restocked: " + item.name)
+          window.location.reload()
+        }).catch((error) => {
+          if (!(error instanceof TypeError)) {
+            alert("Error Restocking Item: " + error)
+            window.location.reload()
+          }
+          console.log(error)
+        }); 
+    },
+    showEditModal(item) {
+      this.selectedItem = item;
+      this.showEditPopupModal = true;
+      console.log(this.showEditPopupModal);
+    },
     isServer() {
       const role = window.localStorage.getItem('role')
       if ((role == 'server') || (role == 'manager')) {

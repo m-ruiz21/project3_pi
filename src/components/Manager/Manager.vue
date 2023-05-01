@@ -229,7 +229,7 @@ export default {
 
       //loops through inventory and pushes low stock items
       for (let i = 0; i < inventoryCount; i++) {
-        if (this.Inventory[i].quantity < 2000) {
+        if (this.Inventory[i].quantity < 1950) {
           this.RestockItems.push(this.Inventory[i].name)
           this.RestockCount++;
         }
