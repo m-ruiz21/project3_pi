@@ -98,16 +98,31 @@
                     </div>
                   </td>
                 </tr>
+                <td></td>
+                <td>
+                  <div class="mt-3 row-sm-5">
+                    <div class="col">
+                      <button v-if="!showAddModel" class="btn btn-primary" @click="showAdd">Add Item</button>
+                    </div>
+                  </div>
+                </td>
+                <td></td>
               </tbody>
             </table>
           </div>
         </div>
       </div>
     </div>
-    <div class="container align-items-center mt-4 mb-3 justify-content-center rounded bg-white">
+  </div>
+  <div v-if="showAddModel" class="d-flex justify-content-center align-items-center">
+    <div
+      class="container2 border border-secondary px-4 align-items-center mt-4 mb-3 d-flex justify-content-center rounded bg-white">
       <form>
+        <div class="row justify-content-end">
+          <button type="button" class="btn-close mt-4" data-dismiss="modal" aria-label="Close" @click="hideAdd"></button>
+        </div>
         <div class="row">
-          <h1 class="mt-5 mb-4">Add Item</h1>
+          <h4 style="border-bottom: solid 1px lightgray;" class="text-center py-2">Add Item</h4>
           <div class="col">
             <select class="form-select" v-model="SelectedAddCategory">
               <option value="">Choose Category</option>
@@ -146,12 +161,15 @@
             </div>
           </div>
         </div>
-        <button type="button" @click="AddItem" class="btn mt-5 mb-5 btn-primary">
-          Add Item
-        </button>
+        <div class="row">
+          <div class="col d-flex justify-content-center">
+            <button type="button" @click="AddItem" class="btn mt-5 mb-4 btn-primary">
+              Add Item
+            </button>
+          </div>
+        </div>
       </form>
     </div>
-
   </div>
   <manager-footer></manager-footer>
 
@@ -173,6 +191,7 @@ h5 {
 
 .background {
   padding: 10px;
+  min-height: 90vh;
   background-color: rgb(237, 239, 240);
 }
 
@@ -182,6 +201,12 @@ h5 {
 
 .tab-pane {
   padding: 0px 40px;
+}
+
+.container2 {
+  top: 17%;
+  max-width: 40%;
+  position: absolute;
 }
 
 .rounded-circle img:hover {
@@ -224,6 +249,7 @@ export default {
       selectedItem: { name: '', quantity: 0, category: '' },
       showRestockPopupModal: false,
       showEditPopupModal: false,
+      showAddModel: false,
     };
   },
   components: {
@@ -241,20 +267,47 @@ export default {
           this.returnData = response.data;
           console.log(response.data);
           alert("Item Added Successfully: " + this.returnData.name)
-          window.location.reload()
+          this.showAddModel = false
+          this.SelectedAddCategory = ''
+          this.AddItemName = ''
+          this.AddItemQuantity = ''
+          this.AddItemPrice = ''
+          getInventory().then((response) => {
+            this.Inventory = response.data;
+            console.log(response.data);
+          }).catch((error) => {
+            alert("Error Retrieving Inventory: " + error)
+            this.showAddModel = false
+          });
         }).catch((error) => {
           alert("Error Adding Item: " + error)
+          this.showAddModel = false
           window.location.reload()
         });
       }
 
     },
+    hideAdd() {
+      this.showAddModel = false
+    },
+    showAdd() {
+      this.showAddModel = true
+    },
+
     deleteItem(item) {
       console.log(item)
       InventoryRemove(item.name, item.type).then((response) => {
         this.returnData = response.data;
-        alert("Item Removed: " + item.name)
-        window.location.reload()
+        console.log("Item Removed: " + item.name)
+
+        //refresh inventory
+        getInventory().then((response) => {
+          this.Inventory = response.data;
+          console.log(response.data);
+        }).catch((error) => {
+          alert("Error Retrieving Inventory: " + error)
+        });
+
         console.log(response.data);
       }).catch((error) => {
         alert("Error Removing Item: " + error)
@@ -279,8 +332,16 @@ export default {
       InventoryEdit(item.name, 'Quantity', item.quantity + value, item).then((response) => {
         this.returnData = response.data;
         console.log(response.data)
-        alert("Item Restocked: " + item.name)
-        window.location.reload()
+        console.log("Item Restocked: " + item.name)
+
+        //refresh inventory
+        getInventory().then((response) => {
+          this.Inventory = response.data;
+          console.log(response.data);
+        }).catch((error) => {
+          alert("Error Retrieving Inventory: " + error)
+        });
+
       }).catch((error) => {
         if (!(error instanceof TypeError)) {
           alert("Error Restocking Item: " + error)

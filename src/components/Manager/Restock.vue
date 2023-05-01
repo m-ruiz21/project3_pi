@@ -53,6 +53,7 @@ export default {
     },
     restockItem() {
       this.onRestock(this.item, this.restockQuantity);
+      this.restockQuantity = 0;
     }
   }
 };
