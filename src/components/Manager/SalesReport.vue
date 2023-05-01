@@ -71,7 +71,7 @@
                     <div class="col">
                         <select class="form-select" v-model="SelectedItem">
                             <option value="">Select Item</option>
-                            <option v-for="item in Inventory">
+                            <option v-for="item in MenuItems">
                                 {{ item.name }}
                             </option>
                         </select>
@@ -123,6 +123,7 @@
 <script>
 import { getInventory } from "/src/services/InventoryService";
 import { getSalesReport } from "/src/services/ReportService";
+import { getAllMenuItems } from "/src/services/MenuItemService";
 import Footer from "/src/components/Manager/Footer.vue"
 
 export default {
@@ -130,7 +131,7 @@ export default {
     name: "SalesReport",
     data() {
         return {
-            Inventory: {},
+            MenuItems: [],
             SalesReport: {},
             SelectedItem: '',
             StartTime: '',
@@ -193,11 +194,12 @@ export default {
         }
     },
     mounted() {
-        getInventory().then((response) => {
-            this.Inventory = response.data;
-            console.log(response.data);
+        getAllMenuItems().then((response) => {
+            var data = response.data;
+            this.MenuItems = [].concat(...Object.values(data));
+            console.log(this.MenuItems);
         }).catch((error) => {
-            alert("Error Retrieving Inventory: " + error)
+            alert("Error Retrieving Menu Items: " + error)
         });
     },
 };
