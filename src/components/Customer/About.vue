@@ -40,12 +40,27 @@
   <!-- footer -->
   <customer-footer></customer-footer>
 </template> 
-    
+ 
+<style>
+body{
+  overflow-x: hidden;
+}
+</style>
+
+
 <style scoped>
 @import '../../assets/customer.css';
 
 p {
   font-size: 20px;
+}
+
+img {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 0%;
+  border: 1px solid;
 }
 
 image-footer{
