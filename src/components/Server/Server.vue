@@ -108,6 +108,9 @@
               </div>
               <div v-else class="cart">
                 <h3 class="text-secondary" style="margin-top: 13vh;"> No Items Added</h3>
+                <div v-if="showSuccess" class="alert alert-success" style="margin-top: 30vh;" role="alert">
+                  Order Submitted Successfully!
+                </div>
               </div>
               <h2 v-if="items.length" class="total">Total: ${{ total.toFixed(2) }}</h2>
               <button v-if="items.length" type="button" @click="checkout" class="btn mt-1 mx-2 btn-success">
@@ -136,6 +139,7 @@ export default {
       isAuthenticated: this.$auth0.isAuthenticated,
       isLoading: this.$auth0.isLoading,
       currentRole: 'server',
+      showSuccess: false,
       menuItems: {},
       checkedItems: [],
       items: [],
@@ -206,15 +210,17 @@ export default {
 
       submitOrderAsync(menuItems)
         .then(() => {
-          this.showSuccessSubmit = true;
-          setTimeout(() => {
-            console.log(menuItems);
-            this.showSuccessSubmit = false;
-            this.items = [];
-            localStorage.setItem('cart', JSON.stringify(this.items));
-            this.updateTotal();
-          }, 0);
+
+          console.log(menuItems);
+          this.items = [];
+          localStorage.setItem('cart', JSON.stringify(this.items));
+          this.updateTotal();
         });
+
+        this.showSuccess = true;
+      setTimeout(() => {
+        this.showSuccess = false;
+      }, 2000);
     },
     async addToCart() {
       if (this.checkedItems.length) {
