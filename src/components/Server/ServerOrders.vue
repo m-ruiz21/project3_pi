@@ -244,7 +244,7 @@ h5 {
 .background {
     padding: 20px;
     min-height: 95vh;
-    background-color: lightgray;
+    background-color: rgb(237, 239, 240);
 }
 
 @media (max-width: 990px) {

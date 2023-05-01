@@ -50,40 +50,40 @@
               <!-- {{ checkedItems }} -->
               <h5>Base</h5>
               <div v-for="base in menuItems.base" class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" :value='base.name' v-model="checkedItems">
-                <label class="form-check-label">{{ base.name }}</label>
+                <input class="form-check-input" :id="base.name" type="checkbox" :value='base.name' v-model="checkedItems">
+                <label :for="base.name" class="form-check-label">{{ base.name }}</label>
               </div>
             </div>
             <div class="mt-3">
               <!-- {{ checkedProteins }} -->
               <h5>Protein</h5>
               <div v-for="protein in menuItems.protein" class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" :value='protein.name' v-model="checkedItems">
-                <label class="form-check-label">{{ protein.name }}</label>
+                <input class="form-check-input" :id="protein.name" type="checkbox" :value='protein.name' v-model="checkedItems">
+                <label :for="protein.name" class="form-check-label">{{ protein.name }}</label>
               </div>
             </div>
             <div class="mt-3">
               <!-- {{ checkedToppings }} -->
               <h5>Toppings</h5>
               <div v-for="topping in menuItems.topping" class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" :value='topping.name' v-model="checkedItems">
-                <label class="form-check-label">{{ topping.name }}</label>
+                <input :id="topping.name" class="form-check-input" type="checkbox" :value='topping.name' v-model="checkedItems">
+                <label :for="topping.name" class="form-check-label">{{ topping.name }}</label>
               </div>
             </div>
             <div class="mt-3">
               <!-- {{ checkedDressings }} -->
               <h5>Dressings</h5>
               <div v-for="dressing in menuItems.dressing" class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" :value='dressing.name' v-model="checkedItems">
-                <label class="form-check-label">{{ dressing.name }}</label>
+                <input :id="dressing.name" class="form-check-input" type="checkbox" :value='dressing.name' v-model="checkedItems">
+                <label :for="dressing.name" class="form-check-label">{{ dressing.name }}</label>
               </div>
             </div>
             <div class="mt-3">
               <!-- {{ checkedExtras }} -->
               <h5>Extras</h5>
               <div v-for="extra in menuItems.extra" class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" :value='extra.name' v-model="checkedItems">
-                <label class="form-check-label">{{ extra.name }}</label>
+                <input :id="extra.name" class="form-check-input" type="checkbox" :value='extra.name' v-model="checkedItems">
+                <label :for="extra.name" class="form-check-label">{{ extra.name }}</label>
               </div>
             </div>
           </div>
@@ -356,7 +356,7 @@ h5 {
 
 .background {
   min-height: 95vh;
-  background-color: lightgray;
+  background-color: rgb(237, 239, 240);
 }
 
 @media (max-width: 990px) {

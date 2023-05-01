@@ -40,12 +40,27 @@
   <!-- footer -->
   <customer-footer></customer-footer>
 </template> 
-    
+ 
+<style>
+body{
+  overflow-x: hidden;
+}
+</style>
+
+
 <style scoped>
 @import '../../assets/customer.css';
 
 p {
   font-size: 20px;
+}
+
+img {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 0%;
+  border: 1px solid;
 }
 
 image-footer{
@@ -72,8 +87,7 @@ export default {
   name: "Customer",
   data() {
     return {
-      maps_request: "https://www.google.com/maps/embed/v1/place?q=place_id:ChIJn6dlKVmDRoYRcDLBU7gFpPc&key=" + api.maps_api,
-      // https://www.google.com/maps/embed/v1/directions?origin=place_id:ChIJNa-oJpSDRoYRAFNJpQd0jIA&destination=Pom%20%26%20Honey%20-%20MSC%2C%20Joe%20Routt%20Tamu%20Blvd%2C%20College%20Station%2C%20TX%2C%20USA&key=
+      maps_request: "https://www.google.com/maps/embed/v1/place?q=place_id:ChIJn6dlKVmDRoYRcDLBU7gFpPc&key=" + api.maps_api
     };
   },
   components: {

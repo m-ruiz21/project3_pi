@@ -186,7 +186,7 @@ h5 {
 
 .background {
   padding: 10px;
-  background-color: lightgray;
+  background-color: rgb(237, 239, 240);
 }
 
 .my-custom-scrollbar {
