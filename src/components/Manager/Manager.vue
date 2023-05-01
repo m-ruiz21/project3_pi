@@ -63,7 +63,7 @@
     <div class="container">
       <div class="row">
         <div v-if="isAuthenticated"
-          class="col-md-11 py-4 rounded-4 container d-flex align-items-center justify-content-center bg-white"
+          class="col-md-11 py-4 rounded-3 container d-flex align-items-center justify-content-center bg-white"
           style="margin-top: 45px">
           <h1 style="margin-left: 15px">Welcome, {{ user.given_name }}!</h1>
         </div>
