@@ -17,7 +17,7 @@
                         <router-link class="nav-link" to="/manager/inventory">Manage Inventory</router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link class="nav-link" to="/server">Place Orders</router-link>
+                        <router-link class="nav-link" to="/server">Orders</router-link>
                     </li>
                     <li class="nav-item dropdown">
                         <router-link class="nav-link dropdown-toggle active" to="#" role="button" data-bs-toggle="dropdown"
@@ -44,6 +44,12 @@
                             aria-expanded="false" :src="user.picture" height="40">
                         <ul class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton1">
                             <li>
+                                <button class="btn" @click="goToPage('/manager')">Manager View</button>
+                            </li>
+                            <li>
+                                <button class="btn" @click="goToPage('/server')">Server View</button>
+                            </li>
+                            <li>
                                 <button class="btn" @click="logout">Sign out</button>
                             </li>
                         </ul>
@@ -66,7 +72,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>${{ XReport.sales }}</td>
+                                <td v-if="XReport.sales">${{ XReport.sales.toFixed(2) }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -86,15 +92,18 @@
                         </thead>
                         <tbody>
                             <tr v-for="item in ZReport">
-                                <td>{{ item.date }}</td>
-                                <td> {{ item.sales }}</td>
+                                <td>{{ item.date.split('T')[0] }}</td>
+                                <td> ${{ item.sales.toFixed(2) }}</td>
                             </tr>
                         </tbody>
                     </table>
-                    <h2 class="mt-4" v-else style="font-weight: normal;">Please Press Generate</h2>
+                    <h2 class="mt-5 text-muted" v-else style="font-weight: normal;">Please Press Generate</h2>
                 </div>
-                <button @click='GenerateZReport' class="btn mt-4 mb-5 btn-primary">
+                <button v-if="!ZReport.length" @click='GenerateZReport' class="btn mt-4 mb-5 btn-primary">
                     Generate
+                </button>
+                <button v-else @click='ZReportLoadMore' class="btn mt-4 mb-5 btn-primary">
+                    Load More
                 </button>
             </div>
         </div>
@@ -104,7 +113,7 @@
   
 <script>
 
-import { getXReport, getZReport } from '/src/services/ReportService';
+import { getXReport, getZReportWithSize } from '/src/services/ReportService';
 import Footer from "/src/components/Manager/Footer.vue"
 
 
@@ -113,6 +122,7 @@ export default {
     data() {
         return {
             name: "Empty",
+            pageSize: 50,
             XReport: {},
             ZReport: {},
             user: this.$auth0.user,
@@ -127,20 +137,20 @@ export default {
 
     methods: {
         GenerateZReport() {
-            getZReport().then((response) => {
+            getZReportWithSize(this.pageSize).then((response) => {
                 this.ZReport = response.data;
                 console.log(response.data);
 
-                //counts the size of the z report
-                var zCount = 0;
-                for (var i in this.ZReport) {
-                    if (this.ZReport.hasOwnProperty(i)) zCount++;
-                }
+            }).catch((error) => {
+                alert("Error Retrieving Z Report: " + error)
+            });
+        },
 
-                //loops through inventory and sets type for item
-                for (let i = 0; i < zCount; i++) {
-                    this.ZReport[i].date = this.ZReport[i].date.slice(0, -23)
-                }
+        ZReportLoadMore(){
+            this.pageSize += 50
+            getZReportWithSize(this.pageSize).then((response) => {
+                this.ZReport = response.data;
+                console.log(response.data);
 
             }).catch((error) => {
                 alert("Error Retrieving Z Report: " + error)
@@ -170,7 +180,10 @@ export default {
                 return true;
             }
             return false;
-        }
+        },
+        goToPage(pageName) {
+            window.location.href = pageName;
+        },
     },
     beforeMount() {
         if (this.isAuthenticated) {

@@ -2,25 +2,17 @@ import axios from "axios";
 
 const API_ENDPOINT = 'https://pomandhoneyapi.azurewebsites.net/orders';
 
-export async function submitOrderAsync(menuItems) {
+export async function submitOrderAsync(items) {
     const data = {
-        items: ["brown rice", "falafel", "drink", "tomato", "tahini"]
+        items: items 
     };
 
-    fetch(API_ENDPOINT, {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-            "Content-Type": "application/json"
-        }
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error("Network response was not ok");
-        }
-        return response.json();
-    }) 
-    .catch(error => {
-        console.error(error);
-    });
+    const response = await axios.post(API_ENDPOINT, data);
+    
+    console.log(response);
+    if (response.status !== 200) {
+        throw new Error(`Error: ${response.status}`);
+    }
+    
+    return response.data;
 }

@@ -137,6 +137,10 @@ export default {
                 cartItemMenuItems.push(this.orderedMenuItems.dressing[i]);
             }
 
+            for (var i = 1; i < this.orderedMenuItems.dressing.length; i++) {
+                cartItemMenuItems.push("extra dressing");
+            }
+
             console.log(cartItemMenuItems); 
 
             var cartItem = {

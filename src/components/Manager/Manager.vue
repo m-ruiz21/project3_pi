@@ -17,7 +17,7 @@
             <router-link class="nav-link" to="/manager/inventory">Manage Inventory</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/server">Place Orders</router-link>
+            <router-link class="nav-link" to="/server">Orders</router-link>
           </li>
           <li class="nav-item dropdown">
             <router-link class="nav-link dropdown-toggle" to="#" role="button" data-bs-toggle="dropdown"
@@ -44,6 +44,12 @@
               aria-expanded="false" :src="user.picture" height="40">
             <ul class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton1">
               <li>
+                <button class="btn" @click="goToPage('/manager')">Manager View</button>
+              </li>
+              <li>
+                <button class="btn" @click="goToPage('/server')">Server View</button>
+              </li>
+              <li>
                 <button class="btn" @click="logout">Sign out</button>
               </li>
             </ul>
@@ -57,7 +63,7 @@
     <div class="container">
       <div class="row">
         <div v-if="isAuthenticated"
-          class="col-md-11 py-4 rounded-5 container d-flex align-items-center justify-content-center bg-white"
+          class="col-md-11 py-4 rounded-3 container d-flex align-items-center justify-content-center bg-white"
           style="margin-top: 45px">
           <h1 style="margin-left: 15px">Welcome, {{ user.given_name }}!</h1>
         </div>
@@ -204,6 +210,9 @@ export default {
       }
       return false;
     },
+    goToPage(pageName) {
+      window.location.href = pageName;
+    },
   },
   mounted() {
     if (!this.isManager()) {
@@ -239,20 +248,15 @@ export default {
         if (this.salesData.hasOwnProperty(i)) count++;
       }
 
-      //loops through inventory and sets type for item
-      for (let i = 0; i < count; i++) {
-        this.salesData[i].date = this.salesData[i].date.slice(0, -23)
-      }
-
       //update data here
       const data = [
-        { date: this.salesData[count - 7].date, sales: this.salesData[count - 7].sales },
-        { date: this.salesData[count - 6].date, sales: this.salesData[count - 6].sales },
-        { date: this.salesData[count - 5].date, sales: this.salesData[count - 5].sales },
-        { date: this.salesData[count - 4].date, sales: this.salesData[count - 4].sales },
-        { date: this.salesData[count - 3].date, sales: this.salesData[count - 3].sales },
-        { date: this.salesData[count - 2].date, sales: this.salesData[count - 2].sales },
-        { date: this.salesData[count - 1].date, sales: this.salesData[count - 1].sales },
+        { date: this.salesData[count - 7].date.split('T')[0], sales: this.salesData[count - 7].sales },
+        { date: this.salesData[count - 6].date.split('T')[0], sales: this.salesData[count - 6].sales },
+        { date: this.salesData[count - 5].date.split('T')[0], sales: this.salesData[count - 5].sales },
+        { date: this.salesData[count - 4].date.split('T')[0], sales: this.salesData[count - 4].sales },
+        { date: this.salesData[count - 3].date.split('T')[0], sales: this.salesData[count - 3].sales },
+        { date: this.salesData[count - 2].date.split('T')[0], sales: this.salesData[count - 2].sales },
+        { date: this.salesData[count - 1].date.split('T')[0], sales: this.salesData[count - 1].sales },
       ];
 
       new Chart(
@@ -263,7 +267,7 @@ export default {
             labels: data.map(row => row.date),
             datasets: [
               {
-                label: 'Last 7 Open Days in Sales',
+                label: 'Last 7 Days in Sales',
                 data: data.map(row => row.sales),
                 borderColor: 'rgb(46,56,116)'
               }

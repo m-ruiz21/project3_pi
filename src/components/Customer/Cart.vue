@@ -5,14 +5,14 @@
             &lt Return to Menu
         </button>
     </div>
-    <div v-if="cartItems.length" class="container">
+    <div v-if="items.length" class="container">
         <div class="cart-items">
             <div>
             <OrderedMenuItem
-                v-for="(item, index) in cartItems"
+                v-for="(item, index) in items"
                 :key="index"
                 :item="item"
-                @remove="deleteItem"
+                @remove="deleteItem(index)"
             />
             </div>
         </div>
@@ -63,7 +63,7 @@ export default {
     data() {
         return {
             total: 0,
-            cartItems: [],
+            items: [],
             showSuccessDeleteMessage: false,
             showSuccessSubmit: false,
         };
@@ -75,19 +75,19 @@ export default {
         updateCart() {
             const cart = localStorage.getItem('cart');
             if (cart) {
-                this.cartItems = JSON.parse(cart);
+                this.items = JSON.parse(cart);
             }
 
             this.updateTotal();
         },
         updateTotal() {
-            this.total = this.cartItems.reduce((acc, item) => {
+            this.total = this.items.reduce((acc, item) => {
                 return acc + item.price;
             }, 0);
         },
         deleteItem(index) {
-            this.cartItems.splice(index, 1);
-            localStorage.setItem('cart', JSON.stringify(this.cartItems));
+            this.items.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(this.items));
             this.updateTotal();
             
             this.showSuccessDeleteMessage = true;
@@ -96,7 +96,7 @@ export default {
             }, 3000);
         },
         checkout() {
-            const menuItems = this.cartItems.reduce((acc, item) => {
+            const menuItems = this.items.reduce((acc, item) => {
                 return acc.concat(item.menuItems);
             }, []);
 
@@ -104,12 +104,13 @@ export default {
                 .then(() => {
                     this.showSuccessSubmit = true; 
                     setTimeout(() => {
+                        console.log(menuItems);
                         this.showSuccessSubmit = false;
-                        this.cartItems = [];
-                        localStorage.setItem('cart', JSON.stringify(this.cartItems));
+                        this.items = [];
+                        localStorage.setItem('cart', JSON.stringify(this.items));
                         this.updateTotal();
                     }, 2000);
-                })
+                });
         }
     },
     created() {
@@ -153,7 +154,6 @@ export default {
     background-color: #fff;
     transition: all 0.3s ease-in-out;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    overflow: auto;
 }
 
 .sidebar.open {

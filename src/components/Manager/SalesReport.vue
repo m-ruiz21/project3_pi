@@ -17,7 +17,7 @@
                         <router-link class="nav-link" to="/manager/inventory">Manage Inventory</router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link class="nav-link" to="/server">Place Orders</router-link>
+                        <router-link class="nav-link" to="/server">Orders</router-link>
                     </li>
                     <li class="nav-item dropdown">
                         <router-link class="nav-link dropdown-toggle active" to="#" role="button" data-bs-toggle="dropdown"
@@ -43,6 +43,12 @@
                         <img class="rounded-circle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
                             aria-expanded="false" :src="user.picture" height="40">
                         <ul class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton1">
+                            <li>
+                                <button class="btn" @click="goToPage('/manager')">Manager View</button>
+                            </li>
+                            <li>
+                                <button class="btn" @click="goToPage('/server')">Server View</button>
+                            </li>
                             <li>
                                 <button class="btn" @click="logout">Sign out</button>
                             </li>
@@ -101,7 +107,7 @@
                             </thead>
                             <tbody>
                                 <tr v-for="item in SalesReport">
-                                    <td>{{ item.date }}</td>
+                                    <td>{{ item.date.split('T')[0] }}</td>
                                     <td>{{ item.sold }}</td>
                                 </tr>
                             </tbody>
@@ -147,17 +153,6 @@ export default {
                     this.SalesReport = response.data;
                     console.log(response.data);
 
-                    //counts the size of the z report
-                    var salesCount = 0;
-                    for (var i in this.SalesReport) {
-                        if (this.SalesReport.hasOwnProperty(i)) salesCount++;
-                    }
-
-                    //loops through inventory and sets type for item
-                    for (let i = 0; i < salesCount; i++) {
-                        this.SalesReport[i].date = this.SalesReport[i].date.slice(0, -9)
-                    }
-
                 }).catch((error) => {
                     alert("Error Retrieving Sales Report: " + error + "\nPlease Enter Time in This Format: YYYY-MM-DD")
                 });
@@ -187,7 +182,10 @@ export default {
                 return true;
             }
             return false;
-        }
+        },
+        goToPage(pageName) {
+            window.location.href = pageName;
+        },
     },
     beforeMount() {
         if (!this.isManager()) {
