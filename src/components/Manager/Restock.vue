@@ -7,7 +7,7 @@
           <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close" @click="hideModal"></button>
         </div>
         <div class="modal-body">
-          <p>How many do you want to restock?</p>
+          <p>How much inventory do you want to add?</p>
           <div class="input-group">
             <input type="number" class="form-control" v-model="restockQuantity" min="1" step="1" required>
             <span class="input-group-text">{{ item.unit }}</span>
