@@ -27,5 +27,5 @@ coverage
 *.sln
 *.sw?
 
-#JSON that stores API information
-api.json
+#env file that stores API information
+.env
