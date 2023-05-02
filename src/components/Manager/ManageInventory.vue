@@ -63,50 +63,53 @@
   <div class="background">
     <div class="inventory container align-items-center justify-content-center rounded bg-white">
       <div class="row">
-        <div class="col">
-          <h1 class="mt-5 mb-4">Current Inventory</h1>
-          <div class="mt-3">
-            <div class="col">
-              <button v-if="!showAddModel" class="btn btn-primary" @click="showAdd">Add Item</button>
-            </div>
+        <h1 class="mt-5 mb-0">Current Inventory</h1>
+      </div>
+      <div class="row mb-2">
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col">
+            <button v-if="!showAddModel" class="btn btn-primary" @click="showAdd">Add Item</button>
           </div>
-          <div class="table-wrapper-scroll-y my-custom-scrollbar mb-5">
-            <table v-if="Inventory && Inventory.length" class="table">
-              <thead>
-                <tr>
-                  <th scope="col">Name</th>
-                  <th scope="col">Type</th>
-                  <th scope="col">Quantity</th>
-                  <th scope="col"></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="item in Inventory" :key="item.id">
-                  <td>{{ item.name }}</td>
-                  <td>{{ item.type }}</td>
-                  <td>{{ item.quantity }}</td>
-                  <td>
-                    <div class="dropdown dropend">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                        class="bi bi-three-dots-vertical" viewBox="0 0 16 16" data-bs-toggle="dropdown"
-                        data-bs-target="#actionsDropdown{{item.id}}" aria-expanded="false">
-                        <path
-                          d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
-                      </svg>
-                      <ul class="dropdown-menu" aria-labelledby="actionsDropdown{{item.id}}">
-                        <li v-if="item.type == 'menu item'"><a class="dropdown-item" href="#"
-                            @click.prevent="showEditModal(item)">Edit</a></li>
-                        <li><a class="dropdown-item" href="#" @click.prevent="showRestockModal(item)">Restock</a></li>
-                        <li><a class="dropdown-item text-danger" href="#" @click.prevent="deleteItem(item)">Delete</a>
-                        </li>
-                      </ul>
-                    </div>
-                  </td>
-                </tr>
-                <td></td>
-              </tbody>
-            </table>
-          </div>
+ 
+      </div>
+      <div class="row">
+        <div class="table-wrapper-scroll-y my-custom-scrollbar mb-5">
+          <table v-if="Inventory && Inventory.length" class="table">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Type</th>
+                <th scope="col">Quantity</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="item in Inventory" :key="item.id">
+                <td>{{ item.name }}</td>
+                <td>{{ item.type }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>
+                  <div class="dropdown dropend">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                      class="bi bi-three-dots-vertical" viewBox="0 0 16 16" data-bs-toggle="dropdown"
+                      data-bs-target="#actionsDropdown{{item.id}}" aria-expanded="false">
+                      <path
+                        d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                    </svg>
+                    <ul class="dropdown-menu" aria-labelledby="actionsDropdown{{item.id}}">
+                      <li v-if="item.type == 'menu item'"><a class="dropdown-item" href="#"
+                          @click.prevent="showEditModal(item)">Edit</a></li>
+                      <li><a class="dropdown-item" href="#" @click.prevent="showRestockModal(item)">Restock</a></li>
+                      <li><a class="dropdown-item text-danger" href="#" @click.prevent="deleteItem(item)">Delete</a>
+                      </li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+              <td></td>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
@@ -263,7 +266,7 @@ export default {
         InventoryAdd(this.AddItemName, this.SelectedAddCategory, this.AddItemPrice, this.AddItemQuantity).then((response) => {
           this.returnData = response.data;
           console.log(response.data);
-          alert("Item Added Successfully: " + this.returnData.name)
+          console.log("Item Added Successfully: " + this.returnData.name)
           this.showAddModel = false
           this.SelectedAddCategory = ''
           this.AddItemName = ''
