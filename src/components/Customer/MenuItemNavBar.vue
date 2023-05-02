@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import $ from 'jquery';
 import { scrollTo } from 'vue-scrollto'
 
 export default {
@@ -30,6 +31,17 @@ export default {
         { id: 3, title: "Sides and Drinks", url: "#sides-and-drinks" },
       ]
     }
+  },
+  mounted(){
+    $(window).scroll(function() {
+      var scroll = $(window).scrollTop();
+
+      if (scroll >= 500) {
+        $(".navbar").addClass("sticky");
+      } else {
+        $(".navbar").removeClass("sticky");
+      }
+    });
   },
   methods: {
     scrollTo(elementId) {
@@ -47,6 +59,18 @@ export default {
   font-size: 25px;
   font-weight: semi-bold;
 }
+.navbar {
+  position: relative;
+  width: 100%;
+  opacity: 0.95;
+}
+
+.navbar.sticky {
+  position: fixed;
+  top: 0;
+  z-index: 100;
+}
+
 
 .nav-link:hover {
   color: black;
