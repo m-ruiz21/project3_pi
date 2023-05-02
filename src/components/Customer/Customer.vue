@@ -27,8 +27,8 @@
 import Navbar from './Navbar.vue'
 import Carousel from './Carousel.vue'
 import MenuItemNavBar from './MenuItemNavBar.vue'
-import MenuItems from '../customer/MenuItems.vue'
-import Footer from '../customer/Footer.vue'
+import MenuItems from '../Customer/MenuItems.vue'
+import Footer from '../Customer/Footer.vue'
 
   export default {
     name: "Customer",

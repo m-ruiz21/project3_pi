@@ -12,8 +12,8 @@ import Sides from "/src/components/Customer/Sides.vue";
 import Orders from '/src/components/Server/ServerOrders.vue'
 import { isValidRoute } from "/src/services/ValidationService.js";
 import { isValidSideRoute } from "/src/services/ValidationService.js";
-import NotFound from "/src/components/Common/NotFound.vue";
-import AccessDenied from "/src/components/Common/AccessDenied.vue";
+import NotFound from "/src/components/common/NotFound.vue";
+import AccessDenied from "/src/components/common/AccessDenied.vue";
 
 import { createRouter, createWebHistory } from "vue-router";
 
