@@ -87,15 +87,12 @@ export default {
   name: "Customer",
   data() {
     return {
-      maps_request: "https://www.google.com/maps/embed/v1/place?q=place_id:ChIJn6dlKVmDRoYRcDLBU7gFpPc&key=" + import.meta.env.production.VITE_MAPS_API
+      maps_request: "https://www.google.com/maps/embed/v1/place?q=place_id:ChIJn6dlKVmDRoYRcDLBU7gFpPc&key=" + import.meta.env.VITE_MAPS_API
     };
   },
   components: {
     'navbar': Navbar,
     'customer-footer': Footer
-  },
-  onMount() {
-    console.log(this.maps_request);
   }
 };
 </script>
