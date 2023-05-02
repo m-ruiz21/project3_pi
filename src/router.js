@@ -1,19 +1,19 @@
-import Manager from "./components/Manager/Manager.vue";
-import Inventory from "./components/Manager/ManageInventory.vue";
-import XZReport from "./components/Manager/XZReport.vue";
-import SalesReport from "./components/Manager/SalesReport.vue";
-import ExcessReport from "./components/Manager/ExcessReport.vue";
-import Customer from "./components/Customer/Customer.vue";
-import Server from "./components/Server/Server.vue";
-import Pita from "./components/Customer/Pita.vue";
-import Bowl from "./components/Customer/Bowl.vue";
-import About from "./components/Customer/About.vue";
-import Sides from "./components/Customer/Sides.vue";
+import Manager from "/src/components/Manager/Manager.vue";
+import Inventory from "/src/components/Manager/ManageInventory.vue";
+import XZReport from "/src/components/Manager/XZReport.vue";
+import SalesReport from "/src/components/Manager/SalesReport.vue";
+import ExcessReport from "/src/components/Manager/ExcessReport.vue";
+import Customer from "/src/components/Customer/Customer.vue";
+import Server from "/src/components/Server/Server.vue";
+import Pita from "/src/components/Customer/Pita.vue";
+import Bowl from "/src/components/Customer/Bowl.vue";
+import About from "/src/components/Customer/About.vue";
+import Sides from "/src/components/Customer/Sides.vue";
 import Orders from '/src/components/Server/ServerOrders.vue'
-import { isValidRoute } from "./services/ValidationService.js";
-import { isValidSideRoute } from "./services/ValidationService.js";
-import NotFound from "./components/Common/NotFound.vue";
-import AccessDenied from "./components/Common/AccessDenied.vue";
+import { isValidRoute } from "/src/services/ValidationService.js";
+import { isValidSideRoute } from "/src/services/ValidationService.js";
+import NotFound from "/src/components/Common/NotFound.vue";
+import AccessDenied from "/src/components/Common/AccessDenied.vue";
 
 import { createRouter, createWebHistory } from "vue-router";
 
