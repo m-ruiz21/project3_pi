@@ -88,12 +88,12 @@
             </div>
           </div>
           <div class="row mt-4">
-            <div class="col">
+            <div class="col" style="margin-top: -10px;">
               <button v-for="side in menuItems['menu item']" type="button" @click="addSide(side.name)"
-                class="btn mx-2 btn-primary">
+                class="btn mx-2 my-2 btn-primary">
                 {{ side.name.charAt(0).toUpperCase() + side.name.slice(1) }}
               </button>
-              <button type="button" @click="addToCart" class="btn mx-2 btn-success">
+              <button type="button" @click="addToCart" class="btn mx-2 my-2 btn-success">
                 Add to Order
               </button>
             </div>
