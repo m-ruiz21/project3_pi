@@ -22,12 +22,16 @@
                     <div class="dropdown">
                         <img class="rounded-circle" type="button" id="dropdownMenuButton0" data-bs-toggle="dropdown"
                             aria-expanded="false" :src="user.picture" height="40" @click="isManager">
-                        <ul class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton0">
+                        <ul class="dropdown-menu justify-content-center text-center">
                             <li v-if="currentRole == 'manager'">
-                                <button class="btn" @click="goToPage('/manager')">Manager View</button>
+                                <button class="btn"><router-link style="color: black; text-decoration-line: none;"
+                                        to="/manager">Manager
+                                        View</router-link></button>
                             </li>
-                            <li>
-                                <button class="btn" @click="goToPage('/server')">Server View</button>
+                            <li v-if="currentRole == 'manager' || currentRole == 'server'">
+                                <button class="btn"> <router-link style="color: black; text-decoration-line: none;"
+                                        to="/server">Server
+                                        View</router-link></button>
                             </li>
                             <li>
                                 <button class="btn" @click="logout">Sign out</button>
@@ -83,8 +87,8 @@
                                             </button>
                                             <ul v-if="orderItems" class="dropdown-menu">
                                                 <li v-for="items in orderItems.items">
-                                                    <a v-if="items"
-                                                        class="dropdown-item disabled text-dark" href="#">{{ items }}</a>
+                                                    <a v-if="items" class="dropdown-item disabled text-dark" href="#">{{
+                                                        items }}</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -147,9 +151,6 @@ export default {
             }
             this.currentRole = 'false'
             return false;
-        },
-        goToPage(pageName) {
-            window.location.href = pageName;
         },
         nextPage() {
             this.pageNumber++;

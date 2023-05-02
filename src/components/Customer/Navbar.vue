@@ -7,8 +7,9 @@
       <div class="justify-content-end">
         <ul class="navbar-nav">
           <li class="nav-item" style="margin-right: 10px;">
-            <button class="btn-secondary about" style="color: rgb(46,56,116); width: fit-content;"
-              onclick="location.href = '/about'">About Us</button>
+            <button class="btn-secondary about"
+              style="color: rgb(46,56,116); text-decoration-line: none; width: fit-content;"><router-link
+                style="color: rgb(46,56,116); text-decoration-line: none;" to="/about">About Us</router-link></button>
           </li>
           <li v-if="!isAuthenticated" class="nav-item" style="margin-right: 10px;">
             <button class="btn profile" @click="login"><img class="rounded-circle" height="42"
@@ -19,10 +20,12 @@
               role="button" data-bs-toggle="dropdown" aria-expanded="false" :src="user.picture" @click="getRoles">
             <ul class="dropdown-menu justify-content-center text-center">
               <li v-if="currentRole == 'manager'">
-                <button class="btn" @click="goToPage('/manager')">Manager View</button>
+                <button class="btn"><router-link style="color: black; text-decoration-line: none;" to="/manager">Manager
+                    View</router-link></button>
               </li>
               <li v-if="currentRole == 'manager' || currentRole == 'server'">
-                <button class="btn" @click="goToPage('/server')">Server View</button>
+                <button class="btn"> <router-link style="color: black; text-decoration-line: none;" to="/server">Server
+                    View</router-link></button>
               </li>
               <li>
                 <button class="btn" @click="logout">Sign out</button>
@@ -70,10 +73,6 @@ export default {
           returnTo: window.location.origin
         }
       });
-    },
-
-    goToPage(pageName) {
-      window.location.href = pageName;
     },
 
     async getRoles() {
@@ -197,5 +196,4 @@ h1 {
     margin-top: -66px !important;
   }
 
-}
-</style>
+}</style>

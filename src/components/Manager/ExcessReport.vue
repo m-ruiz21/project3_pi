@@ -44,10 +44,14 @@
                             aria-expanded="false" :src="user.picture" height="40">
                         <ul class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton1">
                             <li>
-                                <button class="btn" @click="goToPage('/manager')">Manager View</button>
+                                <button class="btn"><router-link style="color: black; text-decoration-line: none;"
+                                        to="/manager">Manager
+                                        View</router-link></button>
                             </li>
                             <li>
-                                <button class="btn" @click="goToPage('/server')">Server View</button>
+                                <button class="btn"> <router-link style="color: black; text-decoration-line: none;"
+                                        to="/server">Server
+                                        View</router-link></button>
                             </li>
                             <li>
                                 <button class="btn" @click="logout">Sign out</button>
@@ -161,9 +165,6 @@ export default {
                 return true;
             }
             return false;
-        },
-        goToPage(pageName) {
-            window.location.href = pageName;
         },
     },
     beforeMount() {

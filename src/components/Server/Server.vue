@@ -22,12 +22,14 @@
           <div class="dropdown">
             <img class="rounded-circle" type="button" id="dropdownMenuButton0" data-bs-toggle="dropdown"
               aria-expanded="false" :src="user.picture" height="40" @click="isManager">
-            <ul class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton0">
+            <ul class="dropdown-menu justify-content-center text-center">
               <li v-if="currentRole == 'manager'">
-                <button class="btn" @click="goToPage('/manager')">Manager View</button>
+                <button class="btn"><router-link style="color: black; text-decoration-line: none;" to="/manager">Manager
+                    View</router-link></button>
               </li>
-              <li>
-                <button class="btn" @click="goToPage('/server')">Server View</button>
+              <li v-if="currentRole == 'manager' || currentRole == 'server'">
+                <button class="btn"> <router-link style="color: black; text-decoration-line: none;" to="/server">Server
+                    View</router-link></button>
               </li>
               <li>
                 <button class="btn" @click="logout">Sign out</button>
@@ -58,7 +60,8 @@
               <!-- {{ checkedProteins }} -->
               <h5>Protein</h5>
               <div v-for="protein in menuItems.protein" class="form-check form-check-inline">
-                <input class="form-check-input" :id="protein.name" type="checkbox" :value='protein.name' v-model="checkedItems">
+                <input class="form-check-input" :id="protein.name" type="checkbox" :value='protein.name'
+                  v-model="checkedItems">
                 <label :for="protein.name" class="form-check-label">{{ protein.name }}</label>
               </div>
             </div>
@@ -66,7 +69,8 @@
               <!-- {{ checkedToppings }} -->
               <h5>Toppings</h5>
               <div v-for="topping in menuItems.topping" class="form-check form-check-inline">
-                <input :id="topping.name" class="form-check-input" type="checkbox" :value='topping.name' v-model="checkedItems">
+                <input :id="topping.name" class="form-check-input" type="checkbox" :value='topping.name'
+                  v-model="checkedItems">
                 <label :for="topping.name" class="form-check-label">{{ topping.name }}</label>
               </div>
             </div>
@@ -74,7 +78,8 @@
               <!-- {{ checkedDressings }} -->
               <h5>Dressings</h5>
               <div v-for="dressing in menuItems.dressing" class="form-check form-check-inline">
-                <input :id="dressing.name" class="form-check-input" type="checkbox" :value='dressing.name' v-model="checkedItems">
+                <input :id="dressing.name" class="form-check-input" type="checkbox" :value='dressing.name'
+                  v-model="checkedItems">
                 <label :for="dressing.name" class="form-check-label">{{ dressing.name }}</label>
               </div>
             </div>
@@ -82,7 +87,8 @@
               <!-- {{ checkedExtras }} -->
               <h5>Extras</h5>
               <div v-for="extra in menuItems.extra" class="form-check form-check-inline">
-                <input :id="extra.name" class="form-check-input" type="checkbox" :value='extra.name' v-model="checkedItems">
+                <input :id="extra.name" class="form-check-input" type="checkbox" :value='extra.name'
+                  v-model="checkedItems">
                 <label :for="extra.name" class="form-check-label">{{ extra.name }}</label>
               </div>
             </div>
@@ -217,7 +223,7 @@ export default {
           this.updateTotal();
         });
 
-        this.showSuccess = true;
+      this.showSuccess = true;
       setTimeout(() => {
         this.showSuccess = false;
       }, 2000);
@@ -366,5 +372,4 @@ h5 {
     margin: 0px 0px 0px 0px !important;
   }
 
-}
-</style>
+}</style>
