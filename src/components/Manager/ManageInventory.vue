@@ -277,7 +277,7 @@ export default {
             this.showAddModel = false
           });
         }).catch((error) => {
-          alert("Error Adding Item: " + error)
+          alert("Error Adding Item. Please Try Again")
           this.showAddModel = false
           window.location.reload()
         });

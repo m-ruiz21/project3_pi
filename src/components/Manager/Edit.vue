@@ -96,11 +96,10 @@ export default {
             updateMenuItem(this.menuItem)
                 .then(() => {
                     this.hideModal();     
-                    alert("Item Updated!")
-                    window.location.reload()
+                    console.log("Item Updated!")
                 })
                 .catch((error) => {
-                    alert(`Error While Updating: ${error.message}`)
+                    alert('Error While Updating. Please Try Again.')
                     window.location.reload()
                     console.log(error);
                 });
