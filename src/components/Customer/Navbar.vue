@@ -13,7 +13,7 @@
           </li>
           <li v-if="!isAuthenticated" class="nav-item" style="margin-right: 10px;">
             <button class="btn profile" @click="login"><img class="rounded-circle" height="42"
-                src="/src/assets/user-icon-2.png"></button>
+                src="/src/assets/user-icon-2.png" alt="profile picture"></button>
           </li>
           <li v-else class="nav-item dropdown">
             <img class="rounded-circle profile-signin" style="margin-right: 20px; margin-top: 2px;" height="42" to="#"
