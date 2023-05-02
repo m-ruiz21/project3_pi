@@ -31,13 +31,13 @@ export default {
             {
               name: "Spicy Meatball Bowl",
               link: "bowl/meatball",
-              image: "src/assets/food/SpicyMeatball.svg",
+              image: "/food/SpicyMeatball.svg",
               description: "Spicy Meatball With Your Choice of Brown or Pilaf Rice, toppings, and dressing."
             },
             {
               name: "Falafel Bowl",
               link: "bowl/falafel",
-              image: "src/assets/food/falafel bowl.svg",
+              image: "/food/falafel bowl.svg",
               description: "Fresh Falafel With Your Choice of Brown or Pilaf Rice, toppings, and dressing"
             }
           ]
@@ -49,13 +49,13 @@ export default {
             {
               name: "Meatball Pita",
               link: "pita/meatball",
-              image: "src/assets/food/meatball pita.svg",
+              image: "/food/meatball pita.svg",
               description: "Spicy Meatball in a warm pita with your choice of toppings and dressing."
             },
             {
               name: "Falafel Pita",
               link: "pita/falafel",
-              image: "src/assets/food/falafel pita.svg",
+              image: "/food/falafel pita.svg",
               description: "Fresh Falafel in a warm pita with your choice of toppings and dressing."
             }
           ]
@@ -67,19 +67,19 @@ export default {
             {
               name: "Side Salad",
               link: "side/salad",
-              image: "src/assets/food/Salad.svg",
+              image: "/food/Salad.svg",
               description: "Refreshing and Healthy Side Salad."
             },
             {
               name: "Hummus And Pita",
               link: "side/pita",
-              image: "src/assets/food/pitas.svg",
+              image: "/food/pitas.svg",
               description: "Delicious freshly made hummus with warm pita bread."
             },
             {
               name: "Fountain Drink",
               link: "side/drink",
-              image: "src/assets/food/drink.svg",
+              image: "/food/drink.svg",
               description: "Refreshing fountain drink of your choice."
             }
           ]

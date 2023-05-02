@@ -173,14 +173,14 @@ export default {
             if (name === 'falafel') {
                 this.name = 'Falafel Pita'
                 this.media = {
-                    img: '/src/assets/food/falafel pita.svg',
+                    img: '/food/falafel pita.svg',
                     alt: 'falafel bowl',
                     description: "Spicy Meatball in a warm pita with your choice of toppings and dressing."
                 };
             } else if (name === 'meatball') {
                 this.name = 'Spicy Meatball Pita';
                 this.media = {
-                    img: '/src/assets/food/meatball pita.svg',
+                    img: '/food/meatball pita.svg',
                     alt: 'meatball bowl',
                     description: "Fresh Falafel in a warm pita with your choice of toppings and dressing."
                 };
