@@ -5,9 +5,9 @@
   <!-- Add text here -->
   <div class="about-box position-relative">
   <img src="/src/assets/aboutus.png" class="img-fluid">
-    <!-- <div class = "image_text">
+    <div class = "image_text">
       <h1 class="text-white position-absolute top-50 start-25 text-white fw-bold me-10 margin-left: 50px" style="font-size: 7rem; margin-left: 50px;">About Us</h1>
-    </div> -->
+    </div>
   </div>
   <div class="row justify-content-center">
     <div class="col-md-6 mt-5 d-flex align-items-center justify-content-center">
