@@ -47,7 +47,7 @@ export default {
     return {
       images: [
         {   
-            src: 'src/assets/food/SpicyMeatball.svg', 
+            src: '/food/SpicyMeatball.svg', 
             alt: 'Spicy Meatball Bowl Image', 
             subtitle: 'Bold flavor, every bite.', 
             title: 'SPICY MEATBALL BOWL', 
@@ -55,7 +55,7 @@ export default {
             orderLink: 'bowl/meatball',
         }, 
         {   
-            src: 'src/assets/food/falafel bowl.svg', 
+            src: '/food/falafel bowl.svg', 
             alt: 'Falafel Bowl Image', 
             subtitle: 'Healthy Has Never Tasted So Good', 
             title: 'FALAFEL BOWL', 
@@ -63,7 +63,7 @@ export default {
             orderLink: 'bowl/falafel',
         },
         {
-            src: 'src/assets/food/falafel pita.svg',
+            src: '/food/falafel pita.svg',
             alt: 'Falafel Pita Image',
             subtitle: 'Bold Flavors, On the Go',
             title: 'FALAFEL PITA',

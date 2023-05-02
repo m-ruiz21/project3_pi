@@ -181,14 +181,14 @@ export default {
             if (name === 'falafel') {
                 this.name = 'Falafel Bowl'
                 this.media = {
-                    img: '/src/assets/food/falafel bowl.svg',
+                    img: '/food/falafel bowl.svg',
                     alt: 'falafel bowl',
                     description: 'Fresh Falafel With Your Choice of Brown or Pilaf Rice, toppings, and dressing',
                 };
             } else if (name === 'meatball') {
                 this.name = 'Spicy Meatball Bowl';
                 this.media = {
-                    img: '/src/assets/food/SpicyMeatball.svg',
+                    img: '/food/SpicyMeatball.svg',
                     alt: 'meatball bowl',
                     description: 'Spicy Meatball With Your Choice of Brown or Pilaf Rice, toppings, and dressing.',
                 };

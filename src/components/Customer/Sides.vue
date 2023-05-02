@@ -57,7 +57,7 @@ export default {
                 this.displayName = 'Fountain Drink';
                 this.queryName = 'drink';
                 this.media = {
-                    img: '/src/assets/food/drink.svg',
+                    img: '/food/drink.svg',
                     alt: 'drink',
                     description: 'Refreshing fountain drinks of your choice. From classic cola to fruity options, we offer a variety of refreshing beverages to suit any taste. Sip on something cold and delicious with every meal.',
                 };
@@ -65,7 +65,7 @@ export default {
                 this.displayName = 'Hummus and Pita';
                 this.queryName = 'hummus and pita';
                 this.media = {
-                    img: '/src/assets/food/pitas.svg',
+                    img: '/food/pitas.svg',
                     alt: 'Salad',
                     description: 'Crafted in small batches on-site, our pita chips are designed to accompany generous portions of hummus. With a satisfyingly crisp exterior and a soft, fluffy interior, they are the perfect vehicle for scooping up every last bit of our delectable hummus.'
                 };
@@ -74,7 +74,7 @@ export default {
                 this.displayName = 'Side Salad';
                 this.queryName = 'salad';
                 this.media = {
-                    img: '/src/assets/food/Salad2.svg',
+                    img: '/food/Salad2.svg',
                     alt: 'meatball bowl',
                     description: 'Fresh greens, juicy tomatoes, and crisp cucumbers combine to make our side salad a refreshing and delicious addition to any meal. Topped with a light, tangy vinaigrette, it\'s the perfect complement to your dish.'
                 };

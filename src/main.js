@@ -1,12 +1,12 @@
 import { createApp } from "vue";
 import App from "./App.vue";
-import router from "./router";
+import router from "/src/router.js";
 import { createAuth0 } from "@auth0/auth0-vue";
 
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
 
-const app = createApp(App).use(router);
+const app = createApp(App);
 
 app.use(
   createAuth0({
@@ -20,5 +20,7 @@ app.use(
     },
   })
 );
+
+app.use(router);
 
 app.mount("#app");
