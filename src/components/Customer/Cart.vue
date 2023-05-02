@@ -125,7 +125,8 @@ export default {
 
 <style scoped>
 .container {
-    height: 100%;
+    height: 90%;
+    overflow-y: auto;
 }
 
 .btn-secondary {
@@ -197,7 +198,7 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: absolute;
+    position: static;
     bottom: 0;
     width: 100%;
     border-top: 2px solid #242B64;
