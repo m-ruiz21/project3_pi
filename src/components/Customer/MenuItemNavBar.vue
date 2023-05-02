@@ -9,7 +9,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li v-for="link in links" :key="link.id" class="nav-item">
-            <a :href="link.url" class="nav-link">{{ link.title }}</a>
+            <router-link :to="link.url" class="nav-link">{{ link.title }}</router-link>
           </li>
         </ul>
       </div>

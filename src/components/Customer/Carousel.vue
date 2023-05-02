@@ -10,9 +10,9 @@
                                 <h3>{{image.subtitle}}</h3>
                                 <h1>{{image.title}}</h1>
                                 <p>{{image.description}}</p>
-                                <a :href="image.orderLink">
+                                <router-link :to="image.orderLink">
                                     <button class="btn btn-outline-light" style="max-width: 25%;">Order Now</button>     
-                                </a>
+                                </router-link>
                             </div>
                         </div>
                         <div class="col-md-6 order-md-1 align-items-end">
