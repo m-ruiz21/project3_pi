@@ -16,7 +16,7 @@
                 src="/src/assets/user-icon-2.png" alt="profile picture"></button>
           </li>
           <li v-else class="nav-item dropdown">
-            <img class="rounded-circle profile-signin" style="margin-right: 20px; margin-top: 2px;" height="42" to="#"
+            <img class="rounded-circle profile-signin" alt="profile picture" style="margin-right: 20px; margin-top: 2px;" height="42" to="#"
               role="button" data-bs-toggle="dropdown" aria-expanded="false" :src="user.picture" @click="getRoles">
             <ul class="dropdown-menu justify-content-center text-center">
               <li v-if="currentRole == 'manager'">
