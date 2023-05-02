@@ -61,6 +61,7 @@ img {
   width: 100%;
   height: 0%;
   border: 1px solid;
+  filter: grayscale(20%);
 }
 
 image-footer{
