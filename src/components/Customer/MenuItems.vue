@@ -4,7 +4,7 @@
       <h1 :id="category.id" style="font-weight: bold;">{{ category.title }}</h1>
       <div class="row">
         <div v-for="(item, index) in category.items" :key="index" class="col-md-4">
-          <a :href="item.link" class="nav-link"> 
+          <router-link :to="item.link" class="nav-link"> 
             <div class="card border-0">
               <img :src="item.image" class="card-img-top" style="background-color: #F1F1EB;" alt="Bowl Image">
               <div class="card-body">
@@ -12,7 +12,7 @@
                 <p class="card-text"> {{ item.description }} </p>
               </div>
             </div>
-          </a>
+          </router-link>
         </div>
       </div>
     </div>
