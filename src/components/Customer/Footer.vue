@@ -13,11 +13,11 @@
                 <p>&copy; 2023 Team Pi</p>
                 <div>
                     <div class="d-flex translate flex-row-reverse">
-                    <div id="google_translate_element"></div>
+                        <div id="google_translate_element"></div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
   </footer>
 </template>
@@ -25,11 +25,16 @@
 <script>
 export default {
   name: 'Footer',
-  mounted() {
-        let translateS = document.createElement('script')
-        translateS.setAttribute('src', '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit')
-        document.head.appendChild(translateS)
-    },
+  beforeCreate() {
+    // Check if Google Translate script has already been added
+    const translateScript = document.querySelector(`script[src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"]`)
+    if (!translateScript) {
+      // If the script has not been added, append it to the head of the document
+      const newScript = document.createElement('script')
+      newScript.setAttribute('src', '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit')
+      document.head.appendChild(newScript)
+    }
+  },
 }
 </script>
 
