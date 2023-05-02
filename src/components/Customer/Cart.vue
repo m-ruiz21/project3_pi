@@ -177,7 +177,7 @@ export default {
 }
 
 .cart-items {
-    margin-top: 20px;
+    margin-bottom: 80px;
     padding: 20px;
 }
 
@@ -198,7 +198,7 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: static;
+    position: absolute;
     bottom: 0;
     width: 100%;
     border-top: 2px solid #242B64;
