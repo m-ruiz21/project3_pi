@@ -2,6 +2,13 @@ import axios from "axios";
 
 const API_ENDPOINT = 'https://pomandhoneyapi.azurewebsites.net/orders';
 
+
+/**
+ * Submits the Order when given the items
+ * 
+ * @param {} items Gets needed variables from environment
+ * @returns {json} Returns the response
+ */
 export async function submitOrderAsync(items) {
     const data = {
         items: items 

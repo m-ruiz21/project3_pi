@@ -1,6 +1,11 @@
 import axios from "axios";
 
-
+/**
+ * Gets Access token using credentials using OAuth
+ * 
+ * @param {none} None Gets needed variables from environment
+ * @returns {string} Access Token
+ */
 export async function getAccessToken() {
     const data = {
       client_id: import.meta.env.VITE_CLIENT_ID,
