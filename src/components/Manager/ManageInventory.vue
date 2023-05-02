@@ -65,6 +65,11 @@
       <div class="row">
         <div class="col">
           <h1 class="mt-5 mb-4">Current Inventory</h1>
+          <div class="mt-3">
+            <div class="col">
+              <button v-if="!showAddModel" class="btn btn-primary" @click="showAdd">Add Item</button>
+            </div>
+          </div>
           <div class="table-wrapper-scroll-y my-custom-scrollbar mb-5">
             <table v-if="Inventory && Inventory.length" class="table">
               <thead>
@@ -98,14 +103,6 @@
                     </div>
                   </td>
                 </tr>
-                <td></td>
-                <td>
-                  <div class="mt-3 row-sm-5">
-                    <div class="col">
-                      <button v-if="!showAddModel" class="btn btn-primary" @click="showAdd">Add Item</button>
-                    </div>
-                  </div>
-                </td>
                 <td></td>
               </tbody>
             </table>
