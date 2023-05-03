@@ -244,21 +244,15 @@ export default {
       this.salesData = response.data;
       console.log(response.data);
 
-      //counts the size of the z report
-      var count = 0;
-      for (var i in this.salesData) {
-        if (this.salesData.hasOwnProperty(i)) count++;
-      }
-
       //update data here
       const data = [
-        { date: this.salesData[count - 7].date.split('T')[0], sales: this.salesData[count - 7].sales },
-        { date: this.salesData[count - 6].date.split('T')[0], sales: this.salesData[count - 6].sales },
-        { date: this.salesData[count - 5].date.split('T')[0], sales: this.salesData[count - 5].sales },
-        { date: this.salesData[count - 4].date.split('T')[0], sales: this.salesData[count - 4].sales },
-        { date: this.salesData[count - 3].date.split('T')[0], sales: this.salesData[count - 3].sales },
-        { date: this.salesData[count - 2].date.split('T')[0], sales: this.salesData[count - 2].sales },
-        { date: this.salesData[count - 1].date.split('T')[0], sales: this.salesData[count - 1].sales },
+        { date: this.salesData[0].date.split('T')[0], sales: this.salesData[0].sales },
+        { date: this.salesData[1].date.split('T')[0], sales: this.salesData[1].sales },
+        { date: this.salesData[2].date.split('T')[0], sales: this.salesData[2].sales },
+        { date: this.salesData[3].date.split('T')[0], sales: this.salesData[3].sales },
+        { date: this.salesData[4].date.split('T')[0], sales: this.salesData[4].sales },
+        { date: this.salesData[5].date.split('T')[0], sales: this.salesData[5].sales },
+        { date: this.salesData[6].date.split('T')[0], sales: this.salesData[6].sales },
       ];
 
       new Chart(
