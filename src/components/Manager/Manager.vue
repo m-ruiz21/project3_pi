@@ -246,13 +246,13 @@ export default {
 
       //update data here
       const data = [
-        { date: this.salesData[0].date.split('T')[0], sales: this.salesData[0].sales },
-        { date: this.salesData[1].date.split('T')[0], sales: this.salesData[1].sales },
-        { date: this.salesData[2].date.split('T')[0], sales: this.salesData[2].sales },
-        { date: this.salesData[3].date.split('T')[0], sales: this.salesData[3].sales },
-        { date: this.salesData[4].date.split('T')[0], sales: this.salesData[4].sales },
-        { date: this.salesData[5].date.split('T')[0], sales: this.salesData[5].sales },
         { date: this.salesData[6].date.split('T')[0], sales: this.salesData[6].sales },
+        { date: this.salesData[5].date.split('T')[0], sales: this.salesData[5].sales },
+        { date: this.salesData[4].date.split('T')[0], sales: this.salesData[4].sales },
+        { date: this.salesData[3].date.split('T')[0], sales: this.salesData[3].sales },
+        { date: this.salesData[2].date.split('T')[0], sales: this.salesData[2].sales },
+        { date: this.salesData[1].date.split('T')[0], sales: this.salesData[1].sales },
+        { date: this.salesData[0].date.split('T')[0], sales: this.salesData[0].sales },
       ];
 
       new Chart(
