@@ -181,6 +181,10 @@ export default {
     padding: 20px;
 }
 
+.alert {
+    margin-top: -70px;
+}
+
 .cart-items ul {
     list-style: none;
     padding: 0;
