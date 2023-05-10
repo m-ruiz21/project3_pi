@@ -17,9 +17,11 @@ To run the project:
 ```
 
 Below is a demonstration of the various features present in our application:
+
 https://github.com/m-ruiz21/project3_pi/assets/90235503/31c5c95d-c7b5-4963-8bf3-2c27d6711184
 
 
 Below is a demonstration of our Login Features:
+
 https://github.com/m-ruiz21/project3_pi/assets/90235503/e2caf590-bab8-4cfc-8d0c-81486021963f
 
