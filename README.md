@@ -1,4 +1,4 @@
-#Pom & Honey Web Application
+# Pom & Honey Web Application
 
 Welcome to our Vue.js Project for Project 3 at Texas A&M University.
 In our web application, we are using an API that we have created and hosted on Microsoft Azure. The API and backend are responsible for tasks such as storing and retrieving inventory, processing sales transactions, generating reports, and more.
